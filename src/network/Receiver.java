@@ -28,38 +28,12 @@ public class Receiver {
     }
     
     public void listenAndLoadWorld(World world) {
-        ObjectInputStream ois = null;
-        try {
-            // UDP (keep listening)
-            // [!] Game needs to create a thread for this
-            // receive a serialized World and parse to the World object
-            // [!] this.world.load(parsedSerializedWorld);
-            byte[] buffer = udp.read();
-            if(buffer.length > 0) {
-                System.out.println("LOAD: " + buffer.toString());
-            }
-            ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-            ois = new ObjectInputStream(new BufferedInputStream(bais));
-            try {
-                world.loadData((World) ois.readObject());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ois.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                ois.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        // UDP (keep listening)
+        // Receive a serialized world and do `world.load(xxx)`
     }
     
     public void listenToTCP() {
         // TCP (keep listening)
-        // [!] Game needs to create a thread for this
         // receive TCP data and dispatch incoming events
     }
 }

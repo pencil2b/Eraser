@@ -6,14 +6,10 @@
 package network;
 
 import control.ControlData;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import world.World;
 
 /**
  *
@@ -30,11 +26,12 @@ public class Sender {
     }
     
     public int sendLoginAndGetId(String name) {
+        // [done]
+        // TCP
+        // send name and UDP port
+        // wait for the server to get an id
+        // this will return an integer id
         try {
-            // TCP
-            // send name and UDP port
-            // wait for the server to get an id
-            // this will return an integer id
             tcp.write(name + "\n" + udp.getPort() + "\n");
             return Integer.parseInt(tcp.read());
         } catch (IOException ex) {
@@ -44,14 +41,15 @@ public class Sender {
     }
     
     public void sendExit() {
+        // [done]
         // TCP
         // send exit to the server and the server must disconnect
         tcp.write("exit\n");
     }
     
     public void sendControl(int id, ControlData data) {
+        // [done]
         // buffer: id(int) x(double) y(double)
-        
         byte[] idBytes = ByteBuffer.allocate(Integer.SIZE).putInt(id).array();
         byte[] xBytes = ByteBuffer.allocate(Double.SIZE).putDouble(data.x).array();
         byte[] yBytes = ByteBuffer.allocate(Double.SIZE).putDouble(data.y).array();

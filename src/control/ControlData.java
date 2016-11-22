@@ -13,13 +13,19 @@ import java.awt.Point;
  */
 public class ControlData {
     
+    private final double R = 100;
     public double x, y;
     
     // input `p` is mouse - center
     public ControlData(Point p) {
         // unit vector
         double d = p.distance(new Point(0, 0));
-        x = (p.x / d);
-        y = (p.y / d);
+        if(d < R) {
+            x = p.x / R;
+            y = p.y / R;
+        } else {
+            x = p.x / d;
+            y = p.y / d;
+        }
     }
 }
