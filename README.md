@@ -47,23 +47,23 @@
 ＊盡量減少封包大小
 
 - 伺服器廣播物件資料給客戶端（轉成 bytes 全部串在一起一個封包）
-    - ==玩家數量：short==
-    - ==子彈數量：short==
+    - **玩家數量：short**
+    - **子彈數量：short**
     - 所有玩家資料（多筆）
-        - ==ID：short==
-        - ==X：float==
-        - ==Y：float==
-        - ==Age：short==
-        - ==Status：byte==
+        - **ID：short**
+        - **X：float**
+        - **Y：float**
+        - **Age：short**
+        - **Status：byte**
     - 所有子彈資料（多筆）
-        - ==X：float==
-        - ==Y：float==
-        - ==Status：byte==
+        - **X：float**
+        - **Y：float**
+        - **Status：byte**
 
 - 客戶端傳送控制資料給伺服器（同上，為單位向量）
-    - ==ID：short==
-    - ==X：float==
-    - ==Y：float==
+    - **ID：short**
+    - **X：float**
+    - **Y：float**
 
 #### 處理 byte[] 轉換
 
