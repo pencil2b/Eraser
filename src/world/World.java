@@ -24,6 +24,28 @@ public class World {
     public void loadLists(ArrayList newPlayers, ArrayList newBullets) {
         players = newPlayers;
         bullets = newBullets;
+        
+        // debug
+        players.stream().map((player) -> {
+            String s = "#";
+            s += player.id + " (";
+            s += player.x + ", ";
+            s += player.y + ") ";
+            s += player.age + " ";
+            s += player.status;
+            return s;
+        }).forEachOrdered((s) -> {
+            System.out.println(s);
+        });
+        bullets.stream().map((bullet) -> {
+            String s = "# (";
+            s += bullet.x + ", ";
+            s += bullet.y + ") ";
+            s += bullet.status;
+            return s;
+        }).forEachOrdered((s) -> {
+            System.out.println(s);
+        });
     } 
     
 }

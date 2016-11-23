@@ -3,6 +3,7 @@ package eraser;
 
 import control.ControlData;
 import control.MouseControl;
+import event.Events;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -28,6 +29,8 @@ public class Game extends JFrame {
     private Receiver receiver;
     private MouseControl mouseControl;
     private int id;
+    private String name;
+    private Events events;
 
     private final int WIDTH = 800, HEIGHT = 600;
 
@@ -38,6 +41,8 @@ public class Game extends JFrame {
     }
 
     private void setup(String name, String ip, int port) {
+        this.name = name;
+        
         isStopped = false;
         world = new World();
         
@@ -129,6 +134,7 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(60);
+            //System.out.println("<GraphicsLoop>");
             canvas.render(world);
         }
     }
@@ -137,8 +143,8 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(20);
-            //System.out.println("UpdateWorldLoop");
-            //receiver.listenAndLoadWorld(world);
+            //System.out.println("<UpdateWorldLoop>");
+            receiver.listenAndLoadWorld(world);
         }
     }
     
@@ -147,8 +153,8 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(5);
-            //System.out.println("EventDispatchLoop");
-            //receiver.listenToTCP();
+            //System.out.println("<EventDispatchLoop>");
+            receiver.listenToTCPEvents(events);
         }
     }
     
@@ -156,9 +162,10 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(5);
+            //System.out.println("<ControlSendLoop>");
             ControlData data = mouseControl.getData(canvas.getCenter());
             sender.sendControl(id, data);
-            System.out.println("[#] control: " + data.x + ", " + data.y);
+            //System.out.println("[#] control: " + data.x + ", " + data.y);
         }
     }
     

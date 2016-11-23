@@ -63,8 +63,8 @@ public class Sender {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             dos.writeInt(id);
-            dos.writeDouble(data.x);
-            dos.writeDouble(data.y);
+            dos.writeFloat(data.x);
+            dos.writeFloat(data.y);
             byte[] buffer = baos.toByteArray();
             udp.write(buffer);
         } catch (IOException ex) {

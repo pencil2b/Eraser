@@ -12,14 +12,23 @@ import java.awt.Point;
  * @author dorian
  */
 public class Player {
-    public Point position;
+    
+    public float x, y;
     public int id, age, status;
     
-    public Player(Point position, int id, int age, int status) {
-        this.position = position;
+    public Player(int id, float x, float y, int age, int status) {
         this.id = id;
+        this.x = x;
+        this.y = y;
         this.age = age;
         this.status = status;
     }
-
+    
+    public int x() {
+        return (int) this.x;
+    }
+    
+    public int y() {
+        return (int) this.y;
+    }
 }

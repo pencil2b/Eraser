@@ -25,8 +25,8 @@ public class PlayerRenderer {
     public void render(Graphics2D g) {
         g.setColor(Color.GREEN);
         g.drawRect(
-                player.position.x - player.age,
-                player.position.y - player.age,
+                player.x() - player.age,
+                player.y() - player.age,
                 player.age,
                 player.age);
     }

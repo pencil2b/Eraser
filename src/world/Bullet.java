@@ -13,11 +13,21 @@ import java.awt.Point;
  */
 public class Bullet {
     
-    public Point position;
+    public float x, y;
     public int status;
     
-    public Bullet(Point position, String name, int age, int status) {
-        this.position = position;
+    public Bullet(float x, float y, int status) {
+        this.x = x;
+        this.y = y;
         this.status = status;
     }
+    
+    public int x() {
+        return (int) this.x;
+    }
+    
+    public int y() {
+        return (int) this.y;
+    }
+    
 }
