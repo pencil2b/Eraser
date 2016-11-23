@@ -6,6 +6,8 @@
 package network;
 
 import control.ControlData;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
@@ -50,13 +52,16 @@ public class Sender {
     public void sendControl(int id, ControlData data) {
         // [done]
         // buffer: id(int) x(double) y(double)
-        byte[] idBytes = ByteBuffer.allocate(Integer.SIZE).putInt(id).array();
-        byte[] xBytes = ByteBuffer.allocate(Double.SIZE).putDouble(data.x).array();
-        byte[] yBytes = ByteBuffer.allocate(Double.SIZE).putDouble(data.y).array();
-        byte[] buffer = new byte[idBytes.length + xBytes.length + xBytes.length];
-        System.arraycopy(idBytes, 0, buffer, 0, Integer.SIZE);
-        System.arraycopy(xBytes, 0, buffer, Integer.SIZE, Double.SIZE);
-        System.arraycopy(yBytes, 0, buffer, Integer.SIZE + Double.SIZE, Double.SIZE);
-        udp.write(buffer);
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            DataOutputStream dos = new DataOutputStream(baos);
+            dos.writeInt(id);
+            dos.writeDouble(data.x);
+            dos.writeDouble(data.y);
+            byte[] buffer = baos.toByteArray();
+            udp.write(buffer);
+        } catch (IOException ex) {
+            Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

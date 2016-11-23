@@ -5,12 +5,6 @@
  */
 package network;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import world.World;
 
 /**
@@ -29,7 +23,7 @@ public class Receiver {
     
     public void listenAndLoadWorld(World world) {
         // UDP (keep listening)
-        // Receive a serialized world and do `world.load(xxx)`
+        // Receive a serialized World and do `world.load(xxx)`
     }
     
     public void listenToTCP() {

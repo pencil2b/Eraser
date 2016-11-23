@@ -155,7 +155,7 @@ public class Game extends JFrame {
     private void controlSendingLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(100);
+            fps.adjust(5);
             ControlData data = mouseControl.getData(canvas.getCenter());
             sender.sendControl(id, data);
             System.out.println("[#] control: " + data.x + ", " + data.y);
