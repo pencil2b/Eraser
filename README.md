@@ -1,5 +1,11 @@
 # Eraser Client
 
+## TODO
+- graphics/* 完成各種物件的 Renderer
+- 更順暢的畫面修正
+- event/Event.java 實作各 event 的程式
+- rankList...........
+
 ## Network
 
 - 接口
