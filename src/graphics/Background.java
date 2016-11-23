@@ -27,10 +27,11 @@ public class Background {
     public void render(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, width, height);
-        g.setColor(Color.WHITE);
-        int r1 = 3, r2 = 100;
-        g.drawOval(center.x - r1, center.y - r1, r1 + r1, r1 + r1);
-        g.drawOval(center.x - r2, center.y - r2, r2 + r2, r2 + r2);
+        
+//        g.setColor(Color.WHITE);
+//        int r1 = 3, r2 = 100;
+//        g.drawOval(center.x - r1, center.y - r1, r1 + r1, r1 + r1);
+//        g.drawOval(center.x - r2, center.y - r2, r2 + r2, r2 + r2);
     }
     
 }

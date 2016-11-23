@@ -27,21 +27,26 @@ public class World {
         bullets = newBullets;
     } 
     
-    public void transformFor(int id) {
-        for(Player player : players) {
-            
-        }
-        for(Bullet bullet : bullets) {
-            
-        }
+    public void transformFor(int id, Point center) {
+        Point p = getPointById(id);
+        int dx = center.x - p.x;
+        int dy = center.y - p.y;
+        players.forEach((player) -> {
+            player.x += dx;
+            player.y += dy;
+        });
+        bullets.forEach((bullet) -> {
+            bullet.x += dx;
+            bullet.y += dy;
+        });
     }
     
-    private Point getCenterById(int id) {
+    private Point getPointById(int id) {
         for(Player player: players) {
             if(player.id == id) {
                 return new Point(player.x(), player.y());
             }
         }
-        return new Point(players.get(0).x(), players.get(0).y());
+        return new Point(0, 0);
     }
 }

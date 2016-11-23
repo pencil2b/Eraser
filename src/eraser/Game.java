@@ -126,12 +126,16 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
+        
+        
+        world.players.add(new Player(10, 0, 0, 0, 0));
     }
 
     private void graphicsLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(60);
+            world.transformFor(id, canvas.getCenter());
             canvas.render(world);
         }
     }
