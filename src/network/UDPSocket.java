@@ -29,7 +29,7 @@ public class UDPSocket {
         }
         port = remotePort;
         try {
-            socket = new DatagramSocket(0);
+            socket = new DatagramSocket();
         } catch (SocketException ex) {
             Logger.getLogger(UDPSocket.class.getName()).log(Level.SEVERE, null, ex);
         }

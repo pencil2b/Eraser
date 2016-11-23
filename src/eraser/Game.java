@@ -48,7 +48,8 @@ public class Game extends JFrame {
         udp = new UDPSocket(ip, port);
         sender = new Sender(tcp, udp);
         receiver = new Receiver(tcp, udp);
-        this.id = sender.sendLoginAndGetId(name);
+        id = sender.sendLoginAndGetId(name);
+        System.out.println("[+] ID: " + id);
 
         // Setup canvas
         Dimension canvasSize = new Dimension(WIDTH, HEIGHT);
@@ -103,7 +104,7 @@ public class Game extends JFrame {
         threads.add(new Thread() {
             @Override
             public void run() {
-                eventDispachLoop();
+                eventDispatchLoop();
             }
         });
         
@@ -125,30 +126,25 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
-        
-        world.players.add(new Player(1, 0, 0, 50, 50));
     }
 
     private void graphicsLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(60);
-            //System.out.println("<GraphicsLoop>");
             canvas.render(world);
         }
     }
 
     private void updateWorldLoop() {
         while (!isStopped) {
-            //System.out.println("<UpdateWorldLoop>");
             receiver.listenAndLoadWorld(world);
         }
     }
     
     // update rank, your status, 
-    private void eventDispachLoop() {
+    private void eventDispatchLoop() {
         while (!isStopped) {
-            //System.out.println("<EventDispatchLoop>");
             receiver.listenToTCPEvents(events);
         }
     }
@@ -157,10 +153,8 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(20);
-            //System.out.println("<ControlSendLoop>");
             ControlData data = mouseControl.getData(canvas.getCenter());
             sender.sendControl(id, data);
-            //System.out.println("[#] control: " + data.x + ", " + data.y);
         }
     }
     

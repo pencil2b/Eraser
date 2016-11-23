@@ -91,40 +91,48 @@ public class Receiver {
             switch (eventArgs[0]) {
                 case "#id":
                     int idId = Integer.parseInt(eventArgs[1]);
+                    System.out.println("[+] Start as ID: " + idId);
                     events.startAsId(idId);
                     break;
                 case "#rank":
                     if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
+                        System.out.println("[+] Rank BEGIN");
                         events.beginReceivingRanks();
                     } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
+                        System.out.println("[+] Rank END");
                         events.endReceivingRanks();
                     } else if(eventArgs.length == 5) {
                         int rankId = Integer.parseInt(eventArgs[1]);
                         String rankName = eventArgs[2];
                         int rankAge = Integer.parseInt(eventArgs[3]);
                         int rankRank = Integer.parseInt(eventArgs[4]);
+                        System.out.println("[+] Rank: " + rankId + " " + rankName + " " + rankAge + " " + rankRank);
                         RankRow rankRow = new RankRow(rankId, rankName, rankAge, rankRank);
                         events.addRankRow(rankRow);
                     }
                     break;
                 case "#list":
                     if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
+                        System.out.println("[+] List BRGIN");
                         events.beginReceivingList();
                     } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
+                        System.out.println("[+] List END");
                         events.endReceivingList();
                     } else if(eventArgs.length == 4) {
                         int listId = Integer.parseInt(eventArgs[1]);
                         String listName = eventArgs[2];
                         int listRank = Integer.parseInt(eventArgs[3]);
+                        System.out.println("[+] List: " + listId + " " + listName + " " + listRank);
                         PlayerRow playerRow = new PlayerRow(listId, listName, listRank);
                         events.addPlayerRow(playerRow);
                     }
                     break;
                 case "#die":
+                    System.out.println("[+] Received DIE");
                     events.die();
                     break;
                 default:
-                    System.out.println("[!]UnknowenEvent: " + eventString);
+                    System.out.println("[-] UnknowenEvent: " + eventString);
             }
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);

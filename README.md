@@ -10,6 +10,7 @@
 ### TODO
 
 1. graphics/\*
+2. event/Events.java
 
 ### 連線概述
 
@@ -73,7 +74,7 @@ byte[] buffer = baos.toByteArray();
 ```
 
 ``` java
-byte[] buffer = ucp.read();
+byte[] buffer = udp.read();
 ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
 DataInputStream dis = new DataInputStream(bais);
 int id = dis.readInt();

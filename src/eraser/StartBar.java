@@ -36,11 +36,11 @@ public class StartBar implements ActionListener {
 
     private void setComponent() {
 
-        JLabel label1 = new JLabel(" IP  : ");
+        JLabel label1 = new JLabel("IP:Port");
         label1.setSize(60, 20);
         label1.setLocation(30, 15);
 
-        JLabel label2 = new JLabel("Name : ");
+        JLabel label2 = new JLabel("Name");
         label2.setSize(60, 20);
         label2.setLocation(30, 40);
 
@@ -96,7 +96,6 @@ public class StartBar implements ActionListener {
             info.setText("Success!");
             frame.repaint();
             frame.revalidate();
-            
             
             frame.setVisible(false);
         }

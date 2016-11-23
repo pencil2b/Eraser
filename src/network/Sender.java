@@ -35,7 +35,6 @@ public class Sender {
         try {
             tcp.write(name + "\t" + udp.getPort() + "\n");
             int id = Integer.parseInt(tcp.read().split("\t")[1]);
-            System.out.println("Got ID: " + id);
             return id;
         } catch (IOException ex) {
             Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
