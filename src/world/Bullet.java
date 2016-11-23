@@ -13,10 +13,10 @@ import java.awt.Point;
  */
 public class Bullet {
     
-    public float x, y;
+    public double x, y;
     public int status;
     
-    public Bullet(float x, float y, int status) {
+    public Bullet(double x, double y, int status) {
         this.x = x;
         this.y = y;
         this.status = status;

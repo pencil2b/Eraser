@@ -11,10 +11,10 @@ package world;
  */
 public class Player {
     
-    public float x, y;
+    public double x, y;
     public int id, age, status;
     
-    public Player(int id, float x, float y, int age, int status) {
+    public Player(int id, double x, double y, int age, int status) {
         this.id = id;
         this.x = x;
         this.y = y;

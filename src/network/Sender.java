@@ -44,17 +44,17 @@ public class Sender {
     
     public void sendExit() {
         // [done]
-        tcp.write("#exit\n");   
+        tcp.write("exit\n");   
     }
     
     public void sendRestart() {
         // [done]
-        tcp.write("#restart\n");   
+        tcp.write("restart\n");   
     }
     
     public void sendRankRequest() {
         // [done]
-        tcp.write("#rank\n");
+        tcp.write("rank\n");
     }
     
     public void sendControl(int id, ControlData data) {
@@ -63,7 +63,7 @@ public class Sender {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
-            dos.writeInt(id);
+            dos.writeShort(id);
             dos.writeFloat(data.x);
             dos.writeFloat(data.y);
             byte[] buffer = baos.toByteArray();

@@ -45,23 +45,23 @@ public class Receiver {
             ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
             DataInputStream dis = new DataInputStream(bais);
 
-            int playerCount = dis.readInt();
-            int bulletCount = dis.readInt();
+            int playerCount = dis.readShort();
+            int bulletCount = dis.readShort();
 
             for (int i = 0; i < playerCount; i++) {
-                int id = dis.readInt();
-                float x = dis.readFloat();
-                float y = dis.readFloat();
-                int age = dis.readInt();
-                int status = dis.readInt();
+                int id = dis.readShort();
+                double x = dis.readFloat();
+                double y = dis.readFloat();
+                int age = dis.readShort();
+                int status = dis.readByte();
                 Player player = new Player(id, x, y, age, status);
                 newPlayers.add(player);
             }
 
             for (int i = 0; i < bulletCount; i++) {
-                float x = dis.readFloat();
-                float y = dis.readFloat();
-                int status = dis.readInt();
+                double x = dis.readFloat();
+                double y = dis.readFloat();
+                int status = dis.readByte();
                 Bullet bullet = new Bullet(x, y, status);
                 newBullets.add(bullet);
             }
@@ -77,24 +77,24 @@ public class Receiver {
         // [done]
         // TCP (keep listening)
         // receive TCP data and dispatch incoming events
-        // "#id\tID\n" Reset ID and start
-        // "#rank\tBEGIN\n" Set receiving rank True
-        // "#rank\t...\n" Store each record to list
-        // "#rank\tEND\n" Flush and do something
-        // "#list\tSTART\n" Start receiving list
-        // "#list\t...\n" Store each record
-        // "#list\tEND\n" Flush and do something
-        // "#die\n" End the game and show endbar
+        // "id\tID\n" Reset ID and start
+        // "rank\tBEGIN\n" Set receiving rank True
+        // "rank\t...\n" Store each record to list
+        // "rank\tEND\n" Flush and do something
+        // "list\tSTART\n" Start receiving list
+        // "list\t...\n" Store each record
+        // "list\tEND\n" Flush and do something
+        // "die\n" End the game and show endbar
         try {
             String eventString = tcp.read();
             String[] eventArgs = eventString.split("\t");
             switch (eventArgs[0]) {
-                case "#id":
+                case "id":
                     int idId = Integer.parseInt(eventArgs[1]);
                     System.out.println("[+] Start as ID: " + idId);
                     events.startAsId(idId);
                     break;
-                case "#rank":
+                case "rank":
                     if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
                         System.out.println("[+] Rank BEGIN");
                         events.beginReceivingRanks();
@@ -111,7 +111,7 @@ public class Receiver {
                         events.addRankRow(rankRow);
                     }
                     break;
-                case "#list":
+                case "list":
                     if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
                         System.out.println("[+] List BRGIN");
                         events.beginReceivingList();
@@ -127,7 +127,7 @@ public class Receiver {
                         events.addPlayerRow(playerRow);
                     }
                     break;
-                case "#die":
+                case "die":
                     System.out.println("[+] Received DIE");
                     events.die();
                     break;
