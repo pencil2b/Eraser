@@ -24,10 +24,12 @@ public class Events {
         this.game = game;
         isReceivingRanks = false;
         isReceivingList = false;
+        list = new ArrayList<>();
+        ranks = new ArrayList<>();
     }
     
     public void startAsId(int id) {
-        // start game
+        // [!] start game
     }
 
     public void beginReceivingRanks() {
@@ -37,7 +39,7 @@ public class Events {
 
     public void endReceivingRanks() {
         isReceivingRanks = false;
-        // show full ranks window
+        // [!] show full ranks window
     }
     
     public void addRankRow(RankRow rankRow) {
@@ -53,7 +55,7 @@ public class Events {
 
     public void endReceivingList() {
         isReceivingList = false;
-        // update rank list in game
+        // [!] update rank list in game
     }
     
     public void addPlayerRow(PlayerRow playerRow) {
@@ -63,6 +65,7 @@ public class Events {
     }
     
     public void die() {
-        // do die
+        // [!] do die
     }
+    
 }

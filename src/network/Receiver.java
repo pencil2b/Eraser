@@ -90,26 +90,33 @@ public class Receiver {
             String[] eventArgs = eventString.split("\t");
             switch (eventArgs[0]) {
                 case "#id":
-                    int id = Integer.parseInt(eventArgs[1]);
-                    events.startAsId(id);
+                    int idId = Integer.parseInt(eventArgs[1]);
+                    events.startAsId(idId);
                     break;
                 case "#rank":
-                    if(eventArgs[1].equals("BEGIN")) {
+                    if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
                         events.beginReceivingRanks();
-                    } else if(eventArgs[1].equals("END")) {
+                    } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
                         events.endReceivingRanks();
-                    } else {
-                        RankRow rankRow = new RankRow();
+                    } else if(eventArgs.length == 5) {
+                        int rankId = Integer.parseInt(eventArgs[1]);
+                        String rankName = eventArgs[2];
+                        int rankAge = Integer.parseInt(eventArgs[3]);
+                        int rankRank = Integer.parseInt(eventArgs[4]);
+                        RankRow rankRow = new RankRow(rankId, rankName, rankAge, rankRank);
                         events.addRankRow(rankRow);
                     }
                     break;
                 case "#list":
-                    if(eventArgs[1].equals("BEGIN")) {
+                    if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
                         events.beginReceivingList();
-                    } else if(eventArgs[1].equals("END")) {
+                    } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
                         events.endReceivingList();
-                    } else {
-                        PlayerRow playerRow = new PlayerRow();
+                    } else if(eventArgs.length == 4) {
+                        int listId = Integer.parseInt(eventArgs[1]);
+                        String listName = eventArgs[2];
+                        int listRank = Integer.parseInt(eventArgs[3]);
+                        PlayerRow playerRow = new PlayerRow(listId, listName, listRank);
                         events.addPlayerRow(playerRow);
                     }
                     break;
@@ -117,7 +124,7 @@ public class Receiver {
                     events.die();
                     break;
                 default:
-                    System.out.println("Unknowen event: " + eventString);
+                    System.out.println("[!]UnknowenEvent: " + eventString);
             }
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,6 +5,7 @@
  */
 package world;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -24,28 +25,23 @@ public class World {
     public void loadLists(ArrayList newPlayers, ArrayList newBullets) {
         players = newPlayers;
         bullets = newBullets;
-        
-        // debug
-        players.stream().map((player) -> {
-            String s = "#";
-            s += player.id + " (";
-            s += player.x + ", ";
-            s += player.y + ") ";
-            s += player.age + " ";
-            s += player.status;
-            return s;
-        }).forEachOrdered((s) -> {
-            System.out.println(s);
-        });
-        bullets.stream().map((bullet) -> {
-            String s = "# (";
-            s += bullet.x + ", ";
-            s += bullet.y + ") ";
-            s += bullet.status;
-            return s;
-        }).forEachOrdered((s) -> {
-            System.out.println(s);
-        });
     } 
     
+    public void transformFor(int id) {
+        for(Player player : players) {
+            
+        }
+        for(Bullet bullet : bullets) {
+            
+        }
+    }
+    
+    private Point getCenterById(int id) {
+        for(Player player: players) {
+            if(player.id == id) {
+                return new Point(player.x(), player.y());
+            }
+        }
+        return new Point(players.get(0).x(), players.get(0).y());
+    }
 }

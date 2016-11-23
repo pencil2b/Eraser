@@ -65,12 +65,12 @@ byte[] buffer = baos.toByteArray();
 ```
 
 ``` java
-byte[] buffer = baos.toByteArray();
+byte[] buffer = ucp.read();
 ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
 DataInputStream dis = new DataInputStream(bais);
 int id = dis.readInt();
-float x = dos.readFloat();
-float y = dos.readFloat();
+float x = dis.readFloat();
+float y = dis.readFloat();
 ```
 
 

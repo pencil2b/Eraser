@@ -15,19 +15,16 @@ import world.Player;
  */
 public class PlayerRenderer {
     
-    private Player player;
-    private Graphics2D g;
-    
+    private final Player player;
+    private final int R = 10;
+
     public PlayerRenderer(Player player) {
         this.player = player;
     }
     
     public void render(Graphics2D g) {
-        g.setColor(Color.GREEN);
-        g.drawRect(
-                player.x() - player.age,
-                player.y() - player.age,
-                player.age,
-                player.age);
+        int r = R + player.age;
+        g.setColor(Color.WHITE);
+        g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
     }
 }

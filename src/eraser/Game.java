@@ -1,18 +1,17 @@
 
 package eraser;
 
-import control.ControlData;
-import control.MouseControl;
-import event.Events;
+import control.*;
+import event.*;
+import network.*;
+import graphics.*;
+import world.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import network.*;
-import graphics.GameCanvas;
 import java.util.ArrayList;
-import world.World;
 
 /**
  *
@@ -29,7 +28,6 @@ public class Game extends JFrame {
     private Receiver receiver;
     private MouseControl mouseControl;
     private int id;
-    private String name;
     private Events events;
 
     private final int WIDTH = 800, HEIGHT = 600;
@@ -41,10 +39,9 @@ public class Game extends JFrame {
     }
 
     private void setup(String name, String ip, int port) {
-        this.name = name;
-        
         isStopped = false;
         world = new World();
+        events = new Events(this);
         
         // Setup network
         tcp = new TCPSocket(ip, port);
@@ -128,6 +125,8 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
+        
+        world.players.add(new Player(1, 0, 0, 50, 50));
     }
 
     private void graphicsLoop() {
@@ -140,9 +139,7 @@ public class Game extends JFrame {
     }
 
     private void updateWorldLoop() {
-        FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(20);
             //System.out.println("<UpdateWorldLoop>");
             receiver.listenAndLoadWorld(world);
         }
@@ -150,9 +147,7 @@ public class Game extends JFrame {
     
     // update rank, your status, 
     private void eventDispachLoop() {
-        FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(5);
             //System.out.println("<EventDispatchLoop>");
             receiver.listenToTCPEvents(events);
         }
@@ -161,7 +156,7 @@ public class Game extends JFrame {
     private void controlSendingLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(5);
+            fps.adjust(20);
             //System.out.println("<ControlSendLoop>");
             ControlData data = mouseControl.getData(canvas.getCenter());
             sender.sendControl(id, data);

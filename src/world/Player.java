@@ -5,8 +5,6 @@
  */
 package world;
 
-import java.awt.Point;
-
 /**
  *
  * @author dorian

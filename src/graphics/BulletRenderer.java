@@ -5,8 +5,8 @@
  */
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import world.Bullet;
 
 /**
@@ -15,13 +15,15 @@ import world.Bullet;
  */
 public class BulletRenderer {
     
-    private Bullet bullet;
+    private final int R = 5;
+    private final Bullet bullet;
     
     public BulletRenderer(Bullet bullet) {
         this.bullet = bullet;
     }
     
     public void render(Graphics2D g) {
-        
+        g.setColor(Color.GREEN);
+        g.drawOval(bullet.x() - R, bullet.y() - R, R + R, R + R);
     }
 }

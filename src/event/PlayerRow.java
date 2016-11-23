@@ -10,5 +10,12 @@ package event;
  * @author dorian
  */
 public class PlayerRow {
+    public int rank, id;
+    public String name;
     
+    public PlayerRow(int id, String name, int rank) {
+        this.id = id;
+        this.name = name;
+        this.rank = rank;
+    }
 }
