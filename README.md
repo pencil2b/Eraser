@@ -6,14 +6,15 @@
 - Player 半徑就是 (age) pixels
 - Bullet 半徑 5
 - 滑鼠控制：超過 R 就送出單位向量，在 R 內就送出 d/R 長的向量，每秒送出 10 次
--
 
 ### TODO
+
 1. graphics/\*
 
 ### 連線概述
 
 #### TCP
+
 - 登入
 	1. 建立TCP連線
 	2. 玩家傳送 "NAME\tPORT\n" 給伺服器，PORT 是玩家的 UDP 接收端
