@@ -1,4 +1,4 @@
-# 規格書
+# Eraser Client
 
 ## Network
 
