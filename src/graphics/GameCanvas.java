@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import world.*;
 
@@ -25,14 +26,13 @@ public class GameCanvas extends Canvas {
 	this.setMaximumSize(canvasSize);
     }
     
-    public void render(World world) {
+    public void render(World world, int playerId) {
         Graphics2D g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
-        //
-        // [!] maybe you should do transform here
-        //
         
         Background background = new Background(getWidth(), getHeight(), getCenter());
         background.render(g);
+        
+        translateForPlayer(g, world.findPlayer(playerId));
         
         world.players.forEach((p) -> {
             PlayerRenderer playerRenderer = new PlayerRenderer(p);
@@ -54,6 +54,16 @@ public class GameCanvas extends Canvas {
 
 	// Synchronizes graphics state
 	Toolkit.getDefaultToolkit().sync();
+    }
+    
+    private void translateForPlayer(Graphics2D g, Player player) {
+        Point center = getCenter(), position;
+        if(player != null) {
+            position = player.position();
+        } else {
+            position = getCenter();
+        }
+        g.transform(AffineTransform.getTranslateInstance(center.x - position.x, center.y - position.y));
     }
     
     public Point getCenter() {

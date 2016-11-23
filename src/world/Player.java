@@ -5,6 +5,8 @@
  */
 package world;
 
+import java.awt.Point;
+
 /**
  *
  * @author dorian
@@ -28,5 +30,9 @@ public class Player {
     
     public int y() {
         return (int) this.y;
+    }
+    
+    public Point position() {
+        return new Point(x(), y());
     }
 }

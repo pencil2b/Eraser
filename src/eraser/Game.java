@@ -34,8 +34,8 @@ public class Game extends JFrame {
 
     public Game(String name, String ip, int port) {
         super("Eraser");
-        this.setup(name, ip, port);
-        this.start();
+        setup(name, ip, port);
+        start();
     }
 
     private void setup(String name, String ip, int port) {
@@ -48,9 +48,11 @@ public class Game extends JFrame {
         udp = new UDPSocket(ip, port);
         sender = new Sender(tcp, udp);
         receiver = new Receiver(tcp, udp);
+
+        // Login
         id = sender.sendLoginAndGetId(name);
         System.out.println("[+] ID: " + id);
-
+        
         // Setup canvas
         Dimension canvasSize = new Dimension(WIDTH, HEIGHT);
         canvas = new GameCanvas(canvasSize);
@@ -128,15 +130,14 @@ public class Game extends JFrame {
         this.setVisible(true);
         
         
-        world.players.add(new Player(10, 0, 0, 0, 0));
+        //world.players.add(new Player(10, 0, 0, 0, 0));
     }
 
     private void graphicsLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(60);
-            world.transformFor(id, canvas.getCenter());
-            canvas.render(world);
+            fps.adjust(120);
+            canvas.render(world, id);
         }
     }
 
@@ -156,7 +157,7 @@ public class Game extends JFrame {
     private void controlSendingLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(20);
+            fps.adjust(30);
             ControlData data = mouseControl.getData(canvas.getCenter());
             sender.sendControl(id, data);
         }

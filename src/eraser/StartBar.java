@@ -18,7 +18,7 @@ public class StartBar implements ActionListener {
     private JLabel info;
 
     public StartBar() {
-        frame = new JFrame("Eraser");
+        frame = new JFrame("Eraser Login");
         setComponent();
         frame.setLocation(300, 300);
         frame.setSize(335, 130);

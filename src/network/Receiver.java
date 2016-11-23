@@ -55,7 +55,7 @@ public class Receiver {
                 int age = dis.readShort();
                 int status = dis.readByte();
                 Player player = new Player(id, x, y, age, status);
-                newPlayers.add(player);
+                newPlayers.add(player);;
             }
 
             for (int i = 0; i < bulletCount; i++) {

@@ -27,6 +27,15 @@ public class World {
         bullets = newBullets;
     } 
     
+    public Player findPlayer(int id) {
+        for(Player player : players) {
+            if(player.id == id) {
+                return player;
+            }
+        }
+        return null;
+    }
+    
     public void transformFor(int id, Point center) {
         Point p = getPointById(id);
         int dx = center.x - p.x;

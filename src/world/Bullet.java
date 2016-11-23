@@ -30,4 +30,7 @@ public class Bullet {
         return (int) this.y;
     }
     
+    public Point position() {
+        return new Point(x(), y());
+    }
 }

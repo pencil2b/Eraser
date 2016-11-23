@@ -13,7 +13,7 @@ import java.awt.Point;
  */
 public class ControlData {
     
-    private final float R = 100;
+    private final float R = 200;
     public float x, y;
     
     // input `p` is mouse - center
