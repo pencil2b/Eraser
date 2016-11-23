@@ -5,6 +5,17 @@
  */
 package network;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import world.Bullet;
+import world.Player;
 import world.World;
 
 /**
@@ -24,10 +35,34 @@ public class Receiver {
     public void listenAndLoadWorld(World world) {
         // UDP (keep listening)
         // Receive a serialized World and do `world.load(xxx)`
+        try {
+            byte[] buffer = udp.read();
+            
+            ArrayList<Player> newPlayers = new ArrayList<>();
+            ArrayList<Bullet> newBullets = new ArrayList<>();
+            ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+            DataInputStream dis = new DataInputStream(bais);
+            
+            int playerCount = dis.readInt();
+            int bulletCount = 
+            
+            
+            world.loadLists(newPlayers, newBullets);
+        } catch (IOException ex) {
+            Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void listenToTCP() {
+    public void listenToTCPEvent() {
         // TCP (keep listening)
         // receive TCP data and dispatch incoming events
+        // "#id\tID\n" Reset ID and start
+        // "#rank\tBEGIN\n" Set receiving rank True
+        // "#rank\t...\n" Store each record to list
+        // "#rank\tEND\n" Flush and do something
+        // "#list\tSTART\n" Start receiving list
+        // "#list\t...\n" Store each record
+        // "#list\tEND\n" Flush and do something
+        // "#die\n" End the game and show endbar
     }
 }

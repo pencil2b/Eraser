@@ -21,9 +21,9 @@ public class World {
         bullets = new ArrayList<>();
     }
     
-    public void loadData(World w) {
-        this.players = w.players;
-        this.bullets = w.bullets;
-    }
+    public void loadLists(ArrayList newPlayers, ArrayList newBullets) {
+        players = newPlayers;
+        bullets = newBullets;
+    } 
     
 }
