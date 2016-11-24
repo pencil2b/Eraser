@@ -26,5 +26,7 @@ public class PlayerRenderer {
         int r = R + player.age;
         g.setColor(Color.WHITE);
         g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
+        g.setColor(Color.red);
+        g.drawString("Mother Fucker", player.x(), player.y());
     }
 }

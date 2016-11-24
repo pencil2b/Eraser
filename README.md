@@ -23,10 +23,8 @@
 
 - 客戶端請求完整排名
     1. 客戶端：`rank`
-    2. 伺服器：`rank BEGIN`
-    3. 伺服器：`rank <ID> <NAME> <AGE> <RANK>` n 次
-    4. 伺服器：`rank END`
-    5. 客戶端顯示完整排名
+    2. 伺服器：`rank <PLAYER_COUNT> <ID> <NAME> <AGE> <RANK> ...`
+    3. 客戶端顯示完整排名
 
 - 客戶端請求重生
     1. 客戶端：`restart`
@@ -38,10 +36,8 @@
     2. 伺服器斷線，客戶端關閉遊戲
 
 - 伺服器更新玩家名單（當有玩家登入、離開、斷線、死亡、重生）
-    1. 伺服器：`list BEGIN`
-    2. 伺服器：`list <ID> <NAME> <RANK>` n 次
-    3. 伺服器：`list END`
-    4. 客戶端更新玩家名單與即時排名
+    1. 伺服器：`list <PLAYER_COUNT> <ID> <NAME> <RANK> ...`
+    2. 客戶端更新玩家名單與即時排名
 
 - 伺服器宣告玩家死亡
     1. 伺服器：`die`

@@ -17,6 +17,8 @@ public class World {
     public ArrayList<Player> players;
     public ArrayList<Bullet> bullets;
     
+    public final int WIDTH = 3600, HEIGHT = 3600;
+    
     public World() {
         players = new ArrayList<>();
         bullets = new ArrayList<>();

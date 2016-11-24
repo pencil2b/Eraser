@@ -29,10 +29,12 @@ public class GameCanvas extends Canvas {
     public void render(World world, int playerId) {
         Graphics2D g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
         
-        Background background = new Background(getWidth(), getHeight(), getCenter());
-        background.render(g);
+        BackgroundRenderer background = new BackgroundRenderer(this, world);
+        background.renderBackgroundColor(g);
         
         translateForPlayer(g, world.findPlayer(playerId));
+        
+        background.renderWorldGrid(g);
         
         world.players.forEach((p) -> {
             PlayerRenderer playerRenderer = new PlayerRenderer(p);

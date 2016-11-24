@@ -6,19 +6,31 @@
 package control;
 
 import java.awt.Point;
-import java.awt.event.MouseEvent;;
+import java.awt.event.MouseEvent;import java.awt.event.MouseListener;
+;
 import java.awt.event.MouseMotionListener;
 
 /**
  *
  * @author dorian
  */
-public class MouseControl implements MouseMotionListener {
+public class MouseControl implements MouseMotionListener, MouseListener {
     
     public Point position;
+    public boolean lock = false;
+    public ControlData savedControl;
     
     public MouseControl(Point begin) {
         this.position = begin;
+    }
+    
+    public ControlData getData(Point center) {
+        if(lock) {
+            return savedControl;
+        }
+        Point point = new Point(position.x - center.x, position.y - center.y);
+        savedControl = new ControlData(point);
+        return savedControl;
     }
     
     @Override
@@ -31,9 +43,29 @@ public class MouseControl implements MouseMotionListener {
         position.x = e.getX();
         position.y = e.getY();
     }
-    
-    public ControlData getData(Point center) {
-        Point point = new Point(position.x - center.x, position.y - center.y);
-        return new ControlData(point);
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        lock = !lock;
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 }

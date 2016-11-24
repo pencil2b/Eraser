@@ -27,8 +27,8 @@ public class Game extends JFrame {
     private Sender sender;
     private Receiver receiver;
     private MouseControl mouseControl;
-    private int id;
     private Events events;
+    private int id;
 
     private final int WIDTH = 800, HEIGHT = 600;
 
@@ -78,6 +78,7 @@ public class Game extends JFrame {
         // Setup control
         mouseControl = new MouseControl(canvas.getCenter());
         canvas.addMouseMotionListener(mouseControl);
+        canvas.addMouseListener(mouseControl);
         
         this.pack();
     }

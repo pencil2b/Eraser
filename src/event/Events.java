@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Events {
     
     private Game game;
-    public ArrayList<RankRow> ranks;
-    public ArrayList<PlayerRow> list;
+    public ArrayList<RankRow> fullRanks;
+    public ArrayList<PlayerRow> playerList;
     
     boolean isReceivingRanks, isReceivingList;
     
@@ -24,8 +24,8 @@ public class Events {
         this.game = game;
         isReceivingRanks = false;
         isReceivingList = false;
-        list = new ArrayList<>();
-        ranks = new ArrayList<>();
+        playerList = new ArrayList<>();
+        fullRanks = new ArrayList<>();
     }
     
     public void startAsId(int id) {
@@ -33,7 +33,7 @@ public class Events {
     }
 
     public void beginReceivingRanks() {
-        ranks.clear();
+        fullRanks.clear();
         isReceivingRanks = true;
     }
 
@@ -44,12 +44,12 @@ public class Events {
     
     public void addRankRow(RankRow rankRow) {
         if (isReceivingRanks) {
-            ranks.add(rankRow);
+            fullRanks.add(rankRow);
         }
     }
 
     public void beginReceivingList() {
-        list.clear();
+        playerList.clear();
         isReceivingList = true;
     }
 
@@ -60,7 +60,7 @@ public class Events {
     
     public void addPlayerRow(PlayerRow playerRow) {
         if (isReceivingList) {
-            list.add(playerRow);
+            playerList.add(playerRow);
         }
     }
     
