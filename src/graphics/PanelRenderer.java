@@ -5,6 +5,7 @@
  */
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import world.Player;
@@ -23,6 +24,7 @@ public class PanelRenderer {
     
     public void render(Graphics2D g) {
         for(int i = 0; i < nameList.size(); i++) {
+            g.setColor(Color.GRAY);
             g.drawString(String.format("%2d %s", i + 1, nameList.get(i).name), 10, i * 20 + 20);
         }
     }

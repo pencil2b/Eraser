@@ -57,7 +57,7 @@ public class Events {
             String name = nameList.get(player.id);
             player.name = (name == null ? "" : name);
         });
-        game.world.loadLists(newPlayers, newBullets);
+        game.world.update(newPlayers, newBullets);
     }
     
     public void die() {

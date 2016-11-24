@@ -20,7 +20,7 @@ public class StartBar implements ActionListener {
     private JLabel info;
 
     public StartBar() {
-        frame = new JFrame("Eraser Login");
+        frame = new JFrame("Start");
         setComponent();
         frame.setSize(335, 130);
         frame.setLayout(null);

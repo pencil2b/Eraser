@@ -129,9 +129,6 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
-        
-        
-        //world.players.add(new Player(10, 0, 0, 0, 0));
     }
 
     private void graphicsLoop() {

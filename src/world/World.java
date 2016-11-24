@@ -5,7 +5,6 @@
  */
 package world;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +16,14 @@ public class World {
     public ArrayList<Player> players;
     public ArrayList<Bullet> bullets;
     
-    public int width = 3600, height = 3600;
+    public int width = 0, height = 0;
     
     public World() {
         players = new ArrayList<>();
         bullets = new ArrayList<>();
     }
     
-    public void loadLists(ArrayList newPlayers, ArrayList newBullets) {
+    public void update(ArrayList newPlayers, ArrayList newBullets) {
         players = newPlayers;
         bullets = newBullets;
     } 
@@ -37,5 +36,4 @@ public class World {
         }
         return null;
     }
-    
 }
