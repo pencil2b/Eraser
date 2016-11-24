@@ -1,5 +1,7 @@
 package eraser;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,7 +22,6 @@ public class StartBar implements ActionListener {
     public StartBar() {
         frame = new JFrame("Eraser Login");
         setComponent();
-        frame.setLocation(300, 300);
         frame.setSize(335, 130);
         frame.setLayout(null);
         frame.repaint();
@@ -29,6 +30,10 @@ public class StartBar implements ActionListener {
                 System.exit(0);
             }
         });
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int windowLocationX = (int) ((screenSize.getWidth() - 335) / 2);
+        int windowLocationY = (int) ((screenSize.getHeight() - 130) / 2);
+        frame.setLocation(windowLocationX, windowLocationY);
         frame.setResizable(false);
         frame.setVisible(true);
         

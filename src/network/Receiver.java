@@ -7,12 +7,11 @@ package network;
 
 import eraser.Debug;
 import event.Events;
-import event.PlayerRow;
-import event.RankRow;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import world.Bullet;
@@ -33,7 +32,7 @@ public class Receiver {
         this.udp = udp;
     }
 
-    public void listenAndLoadWorld(World world) {
+    public void listenAndLoadWorld(Events events) {
         // [done]
         // UDP (keep listening)
         // Receive a serialized World and do `world.load(xxx)`
@@ -67,7 +66,7 @@ public class Receiver {
                 newBullets.add(bullet);
             }
 
-            world.loadLists(newPlayers, newBullets);
+            events.updateWorld(newPlayers, newBullets);
 
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,38 +91,38 @@ public class Receiver {
             switch (eventArgs[0]) {
                 case "id":
                     int idId = Integer.parseInt(eventArgs[1]);
-                    System.out.println("[+] Start as ID: " + idId);
+                    Debug.info("Reveive ID: " + idId);
                     events.startAsId(idId);
                     break;
-                case "rank":
-                    Debug.show("Receive RANK");
+                case "full":
                     int rankCount = Integer.parseInt(eventArgs[1]), rankIndex = 2;
-                    ArrayList<RankRow> rankList = new ArrayList<>();
+                    ArrayList<Player> fullList = new ArrayList<>();
+                    Debug.show("Receive FULL: count=" + rankCount);
                     for(int i = 0; i < rankCount; i++) {
                         int id = Integer.parseInt(eventArgs[rankIndex++]);
                         String name = eventArgs[rankIndex++];
                         int age = Integer.parseInt(eventArgs[rankIndex++]);
-                        int rank = Integer.parseInt(eventArgs[rankIndex++]);
-                        rankList.add(new RankRow(id, name, age, rank));
+                        fullList.add(new Player(id, name, age));
+                        Debug.show("Receive FULL: id=" + id + " name=" + name + " age=" + age);
                     }
-                    events.loadFullRanks(rankList);
+                    events.loadFullRanks(fullList);
                     break;
                 case "list":
-                    Debug.show("Receive LIST");
                     int listCount = Integer.parseInt(eventArgs[1]), listIndex = 2;
-                    ArrayList<PlayerRow> playerList = new ArrayList<>();
+                    Debug.show("Receive LIST: count=" + listCount);
+                    HashMap<Integer, String> nameList = new HashMap<>();
                     for(int i = 0; i < listCount; i++) {
                         int id = Integer.parseInt(eventArgs[listIndex++]);
                         String name = eventArgs[listIndex++];
-                        int rank = Integer.parseInt(eventArgs[listIndex++]);
-                        playerList.add(new PlayerRow(id, name, rank));
+                        nameList.put(id, name);
+                        Debug.show("Receive LIST: id=" + id + " name=" + name);
                     }
-                    events.loadPlayerList(playerList);
+                    events.loadNameList(nameList);
                     break;
                 case "size":
-                    Debug.show("Receive SIZE");
                     int width = Integer.parseInt(eventArgs[1]);
                     int height = Integer.parseInt(eventArgs[2]);
+                    Debug.show("Receive SIZE: width=" + width + " height=" + height);
                     events.setWorldSize(width, height);
                     break;
                 case "die":
@@ -131,7 +130,7 @@ public class Receiver {
                     events.die();
                     break;
                 default:
-                    Debug.error("UnknowenEvent: " + eventString);
+                    Debug.error("Receive UNKNOWEN: " + eventString);
             }
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);

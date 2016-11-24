@@ -10,12 +10,14 @@
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/world/Bullet.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/control/ControlData.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/RankListRenderer.java</file>
+            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/Debug.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/Receiver.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/FPS.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/Sender.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/control/MouseControl.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/BackgroundRenderer.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/PlayerRenderer.java</file>
+            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/TCPSocket.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/StartBar.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/UDPSocket.java</file>
             <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/GameCanvas.java</file>

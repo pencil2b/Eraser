@@ -27,6 +27,6 @@ public class PlayerRenderer {
         g.setColor(Color.WHITE);
         g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
         g.setColor(Color.red);
-        g.drawString("Mother Fucker", player.x(), player.y());
+        g.drawString(player.name, player.x(), player.y());
     }
 }

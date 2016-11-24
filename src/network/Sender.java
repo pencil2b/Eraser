@@ -52,9 +52,9 @@ public class Sender {
         tcp.write("restart\n");   
     }
     
-    public void sendRankRequest() {
+    public void sendFullListRequest() {
         // [done]
-        tcp.write("rank\n");
+        tcp.write("full\n");
     }
     
     public void sendControl(int id, ControlData data) {

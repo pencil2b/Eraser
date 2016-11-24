@@ -7,6 +7,9 @@ package event;
 
 import eraser.Game;
 import java.util.ArrayList;
+import java.util.HashMap;
+import world.Bullet;
+import world.Player;
 
 /**
  *
@@ -14,9 +17,9 @@ import java.util.ArrayList;
  */
 public class Events {
     
-    private Game game;
-    public ArrayList<RankRow> fullRanks;
-    public ArrayList<PlayerRow> playerList;
+    private final Game game;
+    public ArrayList<Player> fullList;
+    public HashMap<Integer, String> nameList;
     
     boolean isReceivingRanks, isReceivingList;
     
@@ -24,8 +27,8 @@ public class Events {
         this.game = game;
         isReceivingRanks = false;
         isReceivingList = false;
-        playerList = new ArrayList<>();
-        fullRanks = new ArrayList<>();
+        nameList = new HashMap<>();
+        fullList = new ArrayList<>();
     }
     
     public void startAsId(int id) {
@@ -37,19 +40,23 @@ public class Events {
         game.world.height = height;
     }
 
-    public void loadPlayerList(ArrayList<PlayerRow> playerList) {
-        this.playerList = playerList;
-        playerList.forEach((row) -> {
-            System.out.println("player: " + row.id + " " + row.name + " " + " " + row.rank);
-        });
+    public void loadNameList(HashMap<Integer, String> nameList) {
+        this.nameList = nameList;
     }
     
-    public void loadFullRanks(ArrayList<RankRow> fullRanks) {
-        this.fullRanks = fullRanks;
+    public void loadFullRanks(ArrayList<Player> fullRanks) {
+        this.fullList = fullRanks;
+    }
+    
+    public void updateWorld(ArrayList<Player> newPlayers, ArrayList<Bullet> newBullets) {
+        newPlayers.forEach((player) -> {
+            String name = nameList.get(player.id);
+            player.name = (name == null ? "" : name);
+        });
+        game.world.loadLists(newPlayers, newBullets);
     }
     
     public void die() {
         // [!] do die
     }
-    
 }

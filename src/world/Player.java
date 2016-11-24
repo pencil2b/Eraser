@@ -15,6 +15,7 @@ public class Player {
     
     public double x, y;
     public int id, age, status;
+    public String name;
     
     public Player(int id, double x, double y, int age, int status) {
         this.id = id;
@@ -22,6 +23,18 @@ public class Player {
         this.y = y;
         this.age = age;
         this.status = status;
+        this.name = "";
+    }
+    
+    public Player(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    
+    public Player(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
     
     public int x() {

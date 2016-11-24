@@ -62,10 +62,10 @@ public class Game extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int windowLocationX = (int) ((screenSize.getWidth() - WIDTH) / 2);
         int windowLocationY = (int) ((screenSize.getHeight() - HEIGHT) / 2);
+        setLocation(windowLocationX, windowLocationY);
 
         // Setup window size
         setMinimumSize(new Dimension(640, 480));
-        setLocation(windowLocationX, windowLocationY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -144,7 +144,7 @@ public class Game extends JFrame {
 
     private void updateWorldLoop() {
         while (!isStopped) {
-            receiver.listenAndLoadWorld(world);
+            receiver.listenAndLoadWorld(events);
         }
     }
     

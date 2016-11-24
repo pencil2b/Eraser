@@ -22,8 +22,8 @@
     3. 客戶端開始遊戲
 
 - 客戶端請求完整排名
-    1. 客戶端：`rank`
-    2. 伺服器：`rank <PLAYER_COUNT> <ID> <NAME> <AGE> <RANK> ...`
+    1. 客戶端：`full`
+    2. 伺服器：`full <PLAYER_COUNT> <ID> <NAME> <AGE> ...` 「照名次排」
     3. 客戶端顯示完整排名
 
 - 客戶端請求重生
@@ -40,8 +40,9 @@
 	2. 客戶端修改 World 的長寬
 
 - 伺服器更新玩家名單（當有玩家登入、離開、斷線、死亡、重生）
-    1. 伺服器：`list <PLAYER_COUNT> <ID> <NAME> <RANK> ...`
-    2. 客戶端更新玩家名單與即時排名
+    1. 伺服器：`list <PLAYER_COUNT> <ID> <NAME> ...`
+    2. 客戶端更新玩家名單與即時排名，只傳 ID 跟 NAME
+	3. Rank 用 UDP 傳來的資料排
 
 - 伺服器宣告玩家死亡
     1. 伺服器：`die`
