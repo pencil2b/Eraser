@@ -2,7 +2,6 @@
 package eraser;
 
 import control.*;
-import event.*;
 import network.*;
 import graphics.*;
 import world.*;
@@ -24,7 +23,7 @@ public class Game extends JFrame {
     private boolean isStopped;
     private TCPSocket tcp;
     private UDPSocket udp;
-    private Sender sender;
+    public Sender sender;
     private Receiver receiver;
     private MouseControl mouseControl;
     private Events events;
@@ -51,7 +50,7 @@ public class Game extends JFrame {
 
         // Login
         id = sender.sendLoginAndGetId(name);
-        System.out.println("[+] ID: " + id);
+        System.out.println("[*] ID: " + id);
         
         // Setup canvas
         Dimension canvasSize = new Dimension(WIDTH, HEIGHT);
@@ -129,6 +128,7 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
+        events.die();
     }
 
     private void graphicsLoop() {

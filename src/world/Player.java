@@ -14,7 +14,7 @@ import java.awt.Point;
 public class Player {
     
     public double x, y;
-    public int id, age, status;
+    public int id, age, status, rank;
     public String name;
     
     public Player(int id, double x, double y, int age, int status) {
@@ -35,6 +35,13 @@ public class Player {
     public Player(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+    
+    public Player(int id, String name, int age, int rank) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.rank = rank;
     }
     
     public int x() {

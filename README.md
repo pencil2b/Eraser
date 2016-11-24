@@ -99,10 +99,10 @@ float y = dis.readFloat();
 - 半徑：10 + age / 2 (pixel)
 - Age：每秒加一
 - Status：
-    - 0 = 正常
-    - 1 = 剛重生
+    - 0 = 剛重生
+    - 1 = 正常
     - 2 = 正在死亡
-    - 3 = 以死亡
+    - 3 = 死亡
 
 ### Bullet
 

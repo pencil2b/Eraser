@@ -23,10 +23,10 @@ public class PlayerRenderer {
     }
     
     public void render(Graphics2D g) {
-        int r = R + player.age;
+        int r = R + 3 * player.age / 10;
         g.setColor(Color.WHITE);
         g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
         g.setColor(Color.RED);
-        g.drawString(player.name, player.x(), player.y());
+        g.drawString(player.name + "(" + player.age + ")", player.x() - r, player.y() - r - 4);
     }
 }

@@ -6,7 +6,7 @@
 package network;
 
 import eraser.Debug;
-import event.Events;
+import eraser.Events;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -86,10 +86,11 @@ public class Receiver {
         try {
             String eventString = tcp.read();
             String[] eventArgs = eventString.split("\t");
+            Debug.info("<TCP>: " + eventString);
             switch (eventArgs[0]) {
                 case "id":
                     int idId = Integer.parseInt(eventArgs[1]);
-                    Debug.info("Reveive ID: " + idId);
+                    Debug.show("Reveive ID: " + idId);
                     events.startAsId(idId);
                     break;
                 case "full":

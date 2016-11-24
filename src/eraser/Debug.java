@@ -12,7 +12,7 @@ package eraser;
 public class Debug {
     
     public static void info(String s) {
-        System.out.println("[*] " + s);
+        System.out.println("[+] " + s);
     }
     
     public static void error(String s) {
@@ -20,7 +20,7 @@ public class Debug {
     }
     
     public static void show(String s) {
-        System.out.println("[+] " + s);
+        System.out.println("[*] " + s);
     }
     
     public static void print(String s) {

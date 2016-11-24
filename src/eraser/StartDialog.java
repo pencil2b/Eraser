@@ -12,14 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class StartBar implements ActionListener {
+public class StartDialog implements ActionListener {
 
     private JFrame frame;
     private JTextField ip;
     private JTextField name;
     private JLabel info;
 
-    public StartBar() {
+    public StartDialog() {
         frame = new JFrame("Start");
         setComponent();
         frame.setSize(335, 130);

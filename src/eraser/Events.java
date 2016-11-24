@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package event;
+package eraser;
 
-import eraser.Game;
 import java.util.ArrayList;
 import java.util.HashMap;
 import world.Bullet;
@@ -61,6 +60,20 @@ public class Events {
     }
     
     public void die() {
-        // [!] do die
+        int code = GameOver.show(game, new Player(1, "Perry", 1, 1));
+        switch (code) {
+            case 0: // Exit
+                game.sender.sendExit();
+                game.dispose();
+                System.exit(0);
+                break;
+            case 1: // Rank
+                RankList.show(game, new ArrayList());
+                die();
+                break;
+            case 2: // Restart
+                game.sender.sendRestart();
+                break;
+        }
     }
 }
