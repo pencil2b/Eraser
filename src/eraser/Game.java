@@ -138,7 +138,7 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(120);
-            canvas.render(world, id);
+            canvas.render(world, id, events.rankList);
         }
     }
 

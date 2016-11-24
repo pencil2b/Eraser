@@ -18,7 +18,7 @@ import world.Player;
 public class Events {
     
     private final Game game;
-    public ArrayList<Player> fullList;
+    public ArrayList<Player> rankList;
     public HashMap<Integer, String> nameList;
     
     boolean isReceivingRanks, isReceivingList;
@@ -28,7 +28,7 @@ public class Events {
         isReceivingRanks = false;
         isReceivingList = false;
         nameList = new HashMap<>();
-        fullList = new ArrayList<>();
+        rankList = new ArrayList<>();
     }
     
     public void startAsId(int id) {
@@ -40,12 +40,16 @@ public class Events {
         game.world.height = height;
     }
 
-    public void loadNameList(HashMap<Integer, String> nameList) {
+    public void updateNameList(HashMap<Integer, String> nameList) {
         this.nameList = nameList;
     }
     
+    public void updateRankList(ArrayList<Player> rankList) {
+        this.rankList = rankList;
+    }
+    
     public void loadFullRanks(ArrayList<Player> fullRanks) {
-        this.fullList = fullRanks;
+        this.rankList = fullRanks;
     }
     
     public void updateWorld(ArrayList<Player> newPlayers, ArrayList<Bullet> newBullets) {

@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import world.Bullet;
 import world.Player;
-import world.World;
 
 /**
  *
@@ -55,7 +54,7 @@ public class Receiver {
                 int age = dis.readShort();
                 int status = dis.readByte();
                 Player player = new Player(id, x, y, age, status);
-                newPlayers.add(player);;
+                newPlayers.add(player);
             }
 
             for (int i = 0; i < bulletCount; i++) {
@@ -111,13 +110,16 @@ public class Receiver {
                     int listCount = Integer.parseInt(eventArgs[1]), listIndex = 2;
                     Debug.show("Receive LIST: count=" + listCount);
                     HashMap<Integer, String> nameList = new HashMap<>();
+                    ArrayList<Player> rankList = new ArrayList<>();
                     for(int i = 0; i < listCount; i++) {
                         int id = Integer.parseInt(eventArgs[listIndex++]);
                         String name = eventArgs[listIndex++];
                         nameList.put(id, name);
+                        rankList.add(new Player(id, name));
                         Debug.show("Receive LIST: id=" + id + " name=" + name);
                     }
-                    events.loadNameList(nameList);
+                    events.updateNameList(nameList);
+                    events.updateRankList(rankList);
                     break;
                 case "size":
                     int width = Integer.parseInt(eventArgs[1]);

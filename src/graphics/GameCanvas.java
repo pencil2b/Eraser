@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 import world.*;
 
 /**
@@ -26,7 +27,7 @@ public class GameCanvas extends Canvas {
 	this.setMaximumSize(canvasSize);
     }
     
-    public void render(World world, int playerId) {
+    public void render(World world, int playerId, ArrayList<Player> rankList) {
         Graphics2D g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
         
         BackgroundRenderer background = new BackgroundRenderer(this, world);
@@ -45,6 +46,9 @@ public class GameCanvas extends Canvas {
             BulletRenderer bulletRenderer = new BulletRenderer(b);
             bulletRenderer.render(g);
         });
+        
+        PanelRenderer panelRenderer = new PanelRenderer(rankList);
+        panelRenderer.render(g);
         
         g.dispose();
         
