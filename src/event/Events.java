@@ -31,37 +31,21 @@ public class Events {
     public void startAsId(int id) {
         // [!] start game
     }
-
-    public void beginReceivingRanks() {
-        fullRanks.clear();
-        isReceivingRanks = true;
+    
+    public void setWorldSize(int width, int height) {
+        game.world.width = width;
+        game.world.height = height;
     }
 
-    public void endReceivingRanks() {
-        isReceivingRanks = false;
-        // [!] show full ranks window
+    public void loadPlayerList(ArrayList<PlayerRow> playerList) {
+        this.playerList = playerList;
+        playerList.forEach((row) -> {
+            System.out.println("player: " + row.id + " " + row.name + " " + " " + row.rank);
+        });
     }
     
-    public void addRankRow(RankRow rankRow) {
-        if (isReceivingRanks) {
-            fullRanks.add(rankRow);
-        }
-    }
-
-    public void beginReceivingList() {
-        playerList.clear();
-        isReceivingList = true;
-    }
-
-    public void endReceivingList() {
-        isReceivingList = false;
-        // [!] update rank list in game
-    }
-    
-    public void addPlayerRow(PlayerRow playerRow) {
-        if (isReceivingList) {
-            playerList.add(playerRow);
-        }
+    public void loadFullRanks(ArrayList<RankRow> fullRanks) {
+        this.fullRanks = fullRanks;
     }
     
     public void die() {

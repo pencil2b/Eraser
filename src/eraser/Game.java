@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Game extends JFrame {
 
     private GameCanvas canvas;
-    private World world;
+    public World world;
     private boolean isStopped;
     private TCPSocket tcp;
     private UDPSocket udp;

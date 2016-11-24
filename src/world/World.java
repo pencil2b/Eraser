@@ -17,7 +17,7 @@ public class World {
     public ArrayList<Player> players;
     public ArrayList<Bullet> bullets;
     
-    public final int WIDTH = 3600, HEIGHT = 3600;
+    public int width = 3600, height = 3600;
     
     public World() {
         players = new ArrayList<>();
@@ -38,26 +38,4 @@ public class World {
         return null;
     }
     
-    public void transformFor(int id, Point center) {
-        Point p = getPointById(id);
-        int dx = center.x - p.x;
-        int dy = center.y - p.y;
-        players.forEach((player) -> {
-            player.x += dx;
-            player.y += dy;
-        });
-        bullets.forEach((bullet) -> {
-            bullet.x += dx;
-            bullet.y += dy;
-        });
-    }
-    
-    private Point getPointById(int id) {
-        for(Player player: players) {
-            if(player.id == id) {
-                return new Point(player.x(), player.y());
-            }
-        }
-        return new Point(0, 0);
-    }
 }

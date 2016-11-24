@@ -5,6 +5,7 @@
  */
 package network;
 
+import eraser.Debug;
 import event.Events;
 import event.PlayerRow;
 import event.RankRow;
@@ -95,44 +96,42 @@ public class Receiver {
                     events.startAsId(idId);
                     break;
                 case "rank":
-                    if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
-                        System.out.println("[+] Rank BEGIN");
-                        events.beginReceivingRanks();
-                    } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
-                        System.out.println("[+] Rank END");
-                        events.endReceivingRanks();
-                    } else if(eventArgs.length == 5) {
-                        int rankId = Integer.parseInt(eventArgs[1]);
-                        String rankName = eventArgs[2];
-                        int rankAge = Integer.parseInt(eventArgs[3]);
-                        int rankRank = Integer.parseInt(eventArgs[4]);
-                        System.out.println("[+] Rank: " + rankId + " " + rankName + " " + rankAge + " " + rankRank);
-                        RankRow rankRow = new RankRow(rankId, rankName, rankAge, rankRank);
-                        events.addRankRow(rankRow);
+                    Debug.show("Receive RANK");
+                    int rankCount = Integer.parseInt(eventArgs[1]), rankIndex = 2;
+                    ArrayList<RankRow> rankList = new ArrayList<>();
+                    for(int i = 0; i < rankCount; i++) {
+                        int id = Integer.parseInt(eventArgs[rankIndex++]);
+                        String name = eventArgs[rankIndex++];
+                        int age = Integer.parseInt(eventArgs[rankIndex++]);
+                        int rank = Integer.parseInt(eventArgs[rankIndex++]);
+                        rankList.add(new RankRow(id, name, age, rank));
                     }
+                    events.loadFullRanks(rankList);
                     break;
                 case "list":
-                    if(eventArgs.length == 2 && eventArgs[1].equals("BEGIN")) {
-                        System.out.println("[+] List BRGIN");
-                        events.beginReceivingList();
-                    } else if(eventArgs.length == 2 && eventArgs[1].equals("END")) {
-                        System.out.println("[+] List END");
-                        events.endReceivingList();
-                    } else if(eventArgs.length == 4) {
-                        int listId = Integer.parseInt(eventArgs[1]);
-                        String listName = eventArgs[2];
-                        int listRank = Integer.parseInt(eventArgs[3]);
-                        System.out.println("[+] List: " + listId + " " + listName + " " + listRank);
-                        PlayerRow playerRow = new PlayerRow(listId, listName, listRank);
-                        events.addPlayerRow(playerRow);
+                    Debug.show("Receive LIST");
+                    int listCount = Integer.parseInt(eventArgs[1]), listIndex = 2;
+                    ArrayList<PlayerRow> playerList = new ArrayList<>();
+                    for(int i = 0; i < listCount; i++) {
+                        int id = Integer.parseInt(eventArgs[listIndex++]);
+                        String name = eventArgs[listIndex++];
+                        int rank = Integer.parseInt(eventArgs[listIndex++]);
+                        playerList.add(new PlayerRow(id, name, rank));
                     }
+                    events.loadPlayerList(playerList);
+                    break;
+                case "size":
+                    Debug.show("Receive SIZE");
+                    int width = Integer.parseInt(eventArgs[1]);
+                    int height = Integer.parseInt(eventArgs[2]);
+                    events.setWorldSize(width, height);
                     break;
                 case "die":
-                    System.out.println("[+] Received DIE");
+                    Debug.show("Receive DIE");
                     events.die();
                     break;
                 default:
-                    System.out.println("[-] UnknowenEvent: " + eventString);
+                    Debug.error("UnknowenEvent: " + eventString);
             }
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);

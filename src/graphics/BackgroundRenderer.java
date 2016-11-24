@@ -16,8 +16,8 @@ import world.World;
  */
 public class BackgroundRenderer {
     
-    private GameCanvas canvas;
-    private World world;
+    private final GameCanvas canvas;
+    private final World world;
     private final int LENGTH = 100;
     
     public BackgroundRenderer(GameCanvas canvas, World world) {
@@ -37,11 +37,11 @@ public class BackgroundRenderer {
     
     public void renderWorldGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
-        for (int i = 0; i < world.WIDTH + (world.HEIGHT % LENGTH == 0 ? 1 : 0); i += LENGTH) {
-            g.drawLine(i, 0, i, world.HEIGHT);
+        for (int i = 0; i < world.width + (world.height % LENGTH == 0 ? 1 : 0); i += LENGTH) {
+            g.drawLine(i, 0, i, world.height);
         }
-        for (int i = 0; i < world.HEIGHT + (world.WIDTH % LENGTH == 0 ? 1 : 0); i += LENGTH) {
-            g.drawLine(0, i, world.WIDTH, i);
+        for (int i = 0; i < world.height + (world.width % LENGTH == 0 ? 1 : 0); i += LENGTH) {
+            g.drawLine(0, i, world.width, i);
         }
     }
     
