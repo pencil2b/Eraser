@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/PanelRenderer.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/Main.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/event/Events.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/Game.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/world/Player.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/world/Bullet.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/BulletRenderer.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/control/ControlData.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/EndBar.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/Debug.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/Receiver.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/FPS.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/Sender.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/control/MouseControl.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/BackgroundRenderer.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/PlayerRenderer.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/TCPSocket.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/eraser/StartBar.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/network/UDPSocket.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/graphics/GameCanvas.java</file>
-            <file>file:/Users/dorian/.NetBeansProjects/EraserDash/src/world/World.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

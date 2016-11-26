@@ -18,29 +18,26 @@ import java.util.logging.Logger;
  * @author dorian
  */
 public class TCPSocket {
-    
+
     private String ip;
     private int port;
     private Socket socket;
     private BufferedReader reader;
     private PrintStream writer;
-    
-    public TCPSocket(String remoteIp, int remotePort) {
-        try {
-            ip = remoteIp;
-            port = remotePort;
-            socket = new Socket(ip, port);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            writer = new PrintStream(socket.getOutputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(TCPSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public TCPSocket(String remoteIp, int remotePort) throws IOException {
+
+        ip = remoteIp;
+        port = remotePort;
+        socket = new Socket(ip, port);
+        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        writer = new PrintStream(socket.getOutputStream());
     }
-    
+
     public void write(String s) {
         writer.print(s);
     }
-    
+
     public String read() throws IOException {
         return reader.readLine();
     }

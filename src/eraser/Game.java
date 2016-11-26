@@ -9,8 +9,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,22 +31,38 @@ public class Game extends JFrame {
     private MouseControl mouseControl;
     private Events events;
     private int id;
+    public boolean isDead;
 
     private final int WIDTH = 800, HEIGHT = 600;
 
-    public Game(String name, String ip, int port) {
+    public Game() {
         super("Eraser");
-        setup(name, ip, port);
+        String info = Start.getInfo(this);
+        if(info == "" || info == null) {
+            System.exit(0);
+        }
+        try {
+            setup(info.split("@")[0], info.split("@")[1]);
+        } catch(Exception e) {
+            System.exit(0);
+        }
         start();
     }
 
-    private void setup(String name, String ip, int port) {
+    private void setup(String name, String server) {
         isStopped = false;
         world = new World();
         events = new Events(this);
         
         // Setup network
-        tcp = new TCPSocket(ip, port);
+        String ip = server.split(":")[0];
+        int port = Integer.parseInt(server.split(":")[1]);
+        try {
+            tcp = new TCPSocket(ip, port);
+        } catch (IOException ex) {
+            System.exit(1);
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         udp = new UDPSocket(ip, port);
         sender = new Sender(tcp, udp);
         receiver = new Receiver(tcp, udp);
@@ -128,7 +147,6 @@ public class Game extends JFrame {
         canvas.requestFocus();
         
         this.setVisible(true);
-        events.die();
     }
 
     private void graphicsLoop() {
@@ -156,8 +174,10 @@ public class Game extends JFrame {
         FPS fps = new FPS();
         while (!isStopped) {
             fps.adjust(30);
-            ControlData data = mouseControl.getData(canvas.getCenter());
-            sender.sendControl(id, data);
+            if(!isDead) {
+                ControlData data = mouseControl.getData(canvas.getCenter());
+                sender.sendControl(id, data);
+            }
         }
     }
     

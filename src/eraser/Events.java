@@ -60,6 +60,7 @@ public class Events {
     }
     
     public void die() {
+        game.isDead = true;
         int code = GameOver.show(game, new Player(1, "Perry", 1, 1));
         switch (code) {
             case 0: // Exit
@@ -68,11 +69,13 @@ public class Events {
                 System.exit(0);
                 break;
             case 1: // Rank
+                game.sender.sendFullListRequest();
                 RankList.show(game, new ArrayList());
                 die();
                 break;
             case 2: // Restart
                 game.sender.sendRestart();
+                game.isDead = false;
                 break;
         }
     }

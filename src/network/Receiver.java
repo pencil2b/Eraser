@@ -72,27 +72,11 @@ public class Receiver {
     }
 
     public void listenToTCPEvents(Events events) {
-        // [done]
-        // TCP (keep listening)
-        // receive TCP data and dispatch incoming events
-        // "id\tID\n" Reset ID and start
-        // "rank\tBEGIN\n" Set receiving rank True
-        // "rank\t...\n" Store each record to list
-        // "rank\tEND\n" Flush and do something
-        // "list\tSTART\n" Start receiving list
-        // "list\t...\n" Store each record
-        // "list\tEND\n" Flush and do something
-        // "die\n" End the game and show endbar
         try {
             String eventString = tcp.read();
             String[] eventArgs = eventString.split("\t");
             Debug.info("<TCP>: " + eventString);
             switch (eventArgs[0]) {
-                case "id":
-                    int idId = Integer.parseInt(eventArgs[1]);
-                    Debug.show("Reveive ID: " + idId);
-                    events.startAsId(idId);
-                    break;
                 case "full":
                     int rankCount = Integer.parseInt(eventArgs[1]), rankIndex = 2;
                     ArrayList<Player> fullList = new ArrayList<>();

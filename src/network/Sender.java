@@ -27,11 +27,6 @@ public class Sender {
     }
     
     public int sendLoginAndGetId(String name) {
-        // [done]
-        // TCP
-        // send name and UDP port
-        // wait for the server to get an id
-        // this will return an integer id
         try {
             tcp.write(name + "\t" + udp.getPort() + "\n");
             int id = Integer.parseInt(tcp.read().split("\t")[1]);
@@ -43,23 +38,18 @@ public class Sender {
     }
     
     public void sendExit() {
-        // [done]
         tcp.write("exit\n");   
     }
     
     public void sendRestart() {
-        // [done]
         tcp.write("restart\n");   
     }
     
     public void sendFullListRequest() {
-        // [done]
         tcp.write("full\n");
     }
     
     public void sendControl(int id, ControlData data) {
-        // [done]
-        // buffer: id(int) x(double) y(double)
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
