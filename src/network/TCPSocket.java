@@ -5,13 +5,12 @@
  */
 package network;
 
+import eraser.Debug;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,9 +35,12 @@ public class TCPSocket {
 
     public void write(String s) {
         writer.print(s);
+        Debug.tcpSend(s.trim());
     }
 
     public String read() throws IOException {
-        return reader.readLine();
+        String s = reader.readLine();
+        Debug.tcpRecv(s);
+        return s;
     }
 }

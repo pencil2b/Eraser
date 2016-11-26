@@ -1,16 +1,17 @@
 # Eraser Client
 
 ## TODO
-- graphics/* 完成各種物件的 Renderer
-- 更順暢的畫面修正
-- event/Event.java 實作各 event 的程式
-- rankList...........
+- graphics/BulletRenderer.java
+- graphics/PlayerRenderer.java
+- 畫面順暢度
 
 ## Network
 
 - 接口
     - 伺服器：TCP 與 UDP 同 port，伺服器運行時設定。
     - 客戶端：port 讓電腦自己選，UDP Port 在登入時會傳給伺服器。
+
+### 玩家離開就直接斷線喔
 
 ### TCP
 
@@ -30,10 +31,6 @@
     1. 客戶端：`restart`
     3. 客戶端開始遊戲
 
-- 客戶端請求離開
-    1. 客戶端：`exit`
-    2. 伺服器斷線，客戶端關閉遊戲
-
 - 伺服器告知客戶端地圖大小
 	1. 伺服器：`size <WIDTH> <HEIGHT>`
 	2. 客戶端修改 World 的長寬
@@ -45,7 +42,7 @@
 
 - 伺服器宣告玩家死亡
     1. 伺服器：`die`
-    2. 玩家結束遊戲，呼叫 EndBar
+    2. 玩家結束遊戲，呼叫 GameOver Dialog
 
 
 ### UDP

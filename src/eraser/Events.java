@@ -5,6 +5,7 @@
  */
 package eraser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import world.Bullet;
@@ -59,18 +60,17 @@ public class Events {
         game.world.update(newPlayers, newBullets);
     }
     
-    public void die() {
+    public void die() throws IOException {
         game.isDead = true;
-        int code = GameOver.show(game, new Player(1, "Perry", 1, 1));
+        Player me = game.world.findPlayer(game.id);
+        int code = GameOver.show(game, new Player(1, nameList.get(game.id), me.age, 1));
         switch (code) {
             case 0: // Exit
-                game.sender.sendExit();
-                game.dispose();
                 System.exit(0);
                 break;
             case 1: // Rank
                 game.sender.sendFullListRequest();
-                RankList.show(game, new ArrayList());
+                RankList.show(game, game.receiver.receiveFullList());
                 die();
                 break;
             case 2: // Restart

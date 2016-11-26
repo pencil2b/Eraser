@@ -26,4 +26,12 @@ public class Debug {
     public static void print(String s) {
         System.out.println(s);
     }
+    
+    public static void tcpRecv(String s) {
+        System.out.println("TCP >> " + s);
+    }
+    
+    public static void tcpSend(String s) {
+        System.out.println("TCP << " + s);
+    }
 }

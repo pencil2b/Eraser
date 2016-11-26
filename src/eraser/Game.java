@@ -24,13 +24,13 @@ public class Game extends JFrame {
     private GameCanvas canvas;
     public World world;
     private boolean isStopped;
-    private TCPSocket tcp;
-    private UDPSocket udp;
+    public TCPSocket tcp;
+    public UDPSocket udp;
     public Sender sender;
-    private Receiver receiver;
+    public Receiver receiver;
     private MouseControl mouseControl;
     private Events events;
-    private int id;
+    public int id;
     public boolean isDead;
 
     private final int WIDTH = 800, HEIGHT = 600;

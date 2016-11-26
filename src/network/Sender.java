@@ -6,6 +6,7 @@
 package network;
 
 import control.ControlData;
+import eraser.Debug;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -28,8 +29,11 @@ public class Sender {
     
     public int sendLoginAndGetId(String name) {
         try {
-            tcp.write(name + "\t" + udp.getPort() + "\n");
-            int id = Integer.parseInt(tcp.read().split("\t")[1]);
+            String s = name + "\t" + udp.getPort();
+            Debug.tcpSend(s);
+            tcp.write(s + "\n");
+            s = tcp.read();
+            int id = Integer.parseInt(s.split("\t")[1]);
             return id;
         } catch (IOException ex) {
             Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,11 +42,11 @@ public class Sender {
     }
     
     public void sendExit() {
-        tcp.write("exit\n");   
+        tcp.write("exit\n");  
     }
     
     public void sendRestart() {
-        tcp.write("restart\n");   
+        tcp.write("restart\n");  
     }
     
     public void sendFullListRequest() {

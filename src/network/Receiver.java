@@ -75,27 +75,14 @@ public class Receiver {
         try {
             String eventString = tcp.read();
             String[] eventArgs = eventString.split("\t");
-            Debug.info("<TCP>: " + eventString);
             switch (eventArgs[0]) {
-                case "full":
-                    int rankCount = Integer.parseInt(eventArgs[1]), rankIndex = 2;
-                    ArrayList<Player> fullList = new ArrayList<>();
-                    Debug.show("Receive FULL: count=" + rankCount);
-                    for(int i = 0; i < rankCount; i++) {
-                        int id = Integer.parseInt(eventArgs[rankIndex++]);
-                        String name = eventArgs[rankIndex++];
-                        int age = Integer.parseInt(eventArgs[rankIndex++]);
-                        fullList.add(new Player(id, name, age));
-                        Debug.show("Receive FULL: id=" + id + " name=" + name + " age=" + age);
-                    }
-                    events.loadFullRanks(fullList);
-                    break;
                 case "list":
-                    int listCount = Integer.parseInt(eventArgs[1]), listIndex = 2;
+                    int listCount = Integer.parseInt(eventArgs[1]),
+                     listIndex = 2;
                     Debug.show("Receive LIST: count=" + listCount);
                     HashMap<Integer, String> nameList = new HashMap<>();
                     ArrayList<Player> rankList = new ArrayList<>();
-                    for(int i = 0; i < listCount; i++) {
+                    for (int i = 0; i < listCount; i++) {
                         int id = Integer.parseInt(eventArgs[listIndex++]);
                         String name = eventArgs[listIndex++];
                         nameList.put(id, name);
@@ -121,5 +108,28 @@ public class Receiver {
         } catch (IOException ex) {
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<Player> receiveFullList() {
+        try {
+            String[] eventArgs = tcp.read().split("\t");
+            while(!eventArgs[0].equals("full")) {
+                eventArgs = tcp.read().split("\t");
+            }
+            int rankCount = Integer.parseInt(eventArgs[1]), rankIndex = 2;
+            ArrayList<Player> fullList = new ArrayList<>();
+            Debug.show("Receive FULL: count=" + rankCount);
+            for (int i = 0; i < rankCount; i++) {
+                int id = Integer.parseInt(eventArgs[rankIndex++]);
+                String name = eventArgs[rankIndex++];
+                int age = Integer.parseInt(eventArgs[rankIndex++]);
+                fullList.add(new Player(id, name, age));
+                Debug.show("Receive FULL: id=" + id + " name=" + name + " age=" + age);
+            }
+            return fullList;
+        } catch (IOException ex) {
+            Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
