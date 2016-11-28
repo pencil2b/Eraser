@@ -17,7 +17,7 @@ import world.Player;
  *
  * @author dorian
  */
-public class RankList {
+public class RankListDialog {
 
     public static void show(JFrame frame, ArrayList<Player> rankList) {
         String text = String.format("\n%7s\t%7s\t%7s\t%-36s\n\n", "Rank", "Age", "ID", "Name");

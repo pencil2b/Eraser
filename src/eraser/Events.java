@@ -30,11 +30,7 @@ public class Events {
         nameList = new HashMap<>();
         rankList = new ArrayList<>();
     }
-    
-    public void startAsId(int id) {
-        // [!] start game
-    }
-    
+
     public void setWorldSize(int width, int height) {
         game.world.width = width;
         game.world.height = height;
@@ -63,14 +59,14 @@ public class Events {
     public void die() throws IOException {
         game.isDead = true;
         Player me = game.world.findPlayer(game.id);
-        int code = GameOver.show(game, new Player(1, nameList.get(game.id), me.age, 1));
+        int code = GameOverDialog.show(game, new Player(1, nameList.get(game.id), me.age, 1));
         switch (code) {
             case 0: // Exit
                 System.exit(0);
                 break;
             case 1: // Rank
                 game.sender.sendFullListRequest();
-                RankList.show(game, game.receiver.receiveFullList());
+                RankListDialog.show(game, game.receiver.receiveFullList());
                 die();
                 break;
             case 2: // Restart

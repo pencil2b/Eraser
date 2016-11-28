@@ -2,6 +2,25 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/dorian/Projects/Eraser/src/graphics/PanelRenderer.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/graphics/PlayerRenderer.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/world/World.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/Debug.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/GameOverDialog.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/StartDialog.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/FPS.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/RankListDialog.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/graphics/BackgroundRenderer.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/Events.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/graphics/BulletRenderer.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/Config.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/network/Sender.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/network/TCPSocket.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/eraser/Main.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/world/Bullet.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/world/Player.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/network/Receiver.java</file>
+        </group>
     </open-files>
 </project-private>

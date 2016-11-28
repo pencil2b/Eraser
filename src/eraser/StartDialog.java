@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
  *
  * @author Oliver Watkins (c)
  */
-public class Start {
+public class StartDialog {
 
     public static String getInfo(JFrame frame) {
-        return JOptionPane.showInputDialog(frame, "To connect to the server,\nplease input: \"name@ip:port\"", "Welcome", JOptionPane.PLAIN_MESSAGE);
+        return JOptionPane.showInputDialog(frame, Config.START_MESSAGE, Config.START_TITLE, JOptionPane.PLAIN_MESSAGE);
     }
 }

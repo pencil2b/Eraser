@@ -6,7 +6,7 @@ import network.*;
 import graphics.*;
 import world.*;
 import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.Toolkit; 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -33,12 +33,12 @@ public class Game extends JFrame {
     public int id;
     public boolean isDead;
 
-    private final int WIDTH = 800, HEIGHT = 600;
 
     public Game() {
-        super("Eraser");
-        String info = Start.getInfo(this);
-        if(info == "" || info == null) {
+        super(Config.TITLE);
+        
+        String info = StartDialog.getInfo(this);
+        if("".equals(info) || info == null) {
             System.exit(0);
         }
         try {
@@ -46,10 +46,10 @@ public class Game extends JFrame {
         } catch(Exception e) {
             System.exit(0);
         }
-        start();
     }
 
     private void setup(String name, String server) {
+        
         isStopped = false;
         world = new World();
         events = new Events(this);
@@ -72,19 +72,20 @@ public class Game extends JFrame {
         System.out.println("[*] ID: " + id);
         
         // Setup canvas
-        Dimension canvasSize = new Dimension(WIDTH, HEIGHT);
+        Dimension canvasSize = new Dimension(Config.DEFAULT_CANVAS_WIDTH, Config.DEFAULT_CANVAS_HEIGHT);
         canvas = new GameCanvas(canvasSize);
         add(canvas);
 
         // Setup window location
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int windowLocationX = (int) ((screenSize.getWidth() - WIDTH) / 2);
-        int windowLocationY = (int) ((screenSize.getHeight() - HEIGHT) / 2);
+        int windowLocationX = (int) ((screenSize.getWidth() - Config.DEFAULT_CANVAS_WIDTH) / 2);
+        int windowLocationY = (int) ((screenSize.getHeight() - Config.DEFAULT_CANVAS_HEIGHT) / 2);
         setLocation(windowLocationX, windowLocationY);
 
         // Setup window size
-        setMinimumSize(new Dimension(640, 480));
+        setMinimumSize(new Dimension(Config.MIN_CANVAS_WIDTH, Config.MIN_CANVAS_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -98,10 +99,10 @@ public class Game extends JFrame {
         canvas.addMouseMotionListener(mouseControl);
         canvas.addMouseListener(mouseControl);
         
-        this.pack();
+        pack();
     }
 
-    private void start() {
+    public void start() {
         
         canvas.setIgnoreRepaint(true);
         canvas.createBufferStrategy(2);
@@ -152,7 +153,7 @@ public class Game extends JFrame {
     private void graphicsLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(120);
+            fps.adjust(Config.GRAPHICS_UPS);
             canvas.render(world, id, events.rankList);
         }
     }
@@ -173,7 +174,7 @@ public class Game extends JFrame {
     private void controlSendingLoop() {
         FPS fps = new FPS();
         while (!isStopped) {
-            fps.adjust(30);
+            fps.adjust(Config.CONTROL_UPS);
             if(!isDead) {
                 ControlData data = mouseControl.getData(canvas.getCenter());
                 sender.sendControl(id, data);

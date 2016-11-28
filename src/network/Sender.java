@@ -53,6 +53,10 @@ public class Sender {
         tcp.write("full\n");
     }
     
+    public void sendVisibleSize(int width, int height) {
+        tcp.write(String.format("visible\t%d\t%d\n", width, height));
+    }
+    
     public void sendControl(int id, ControlData data) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

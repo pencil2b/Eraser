@@ -5,6 +5,7 @@
  */
 package graphics;
 
+import eraser.Config;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import world.World;
@@ -17,7 +18,6 @@ public class BackgroundRenderer {
     
     private final GameCanvas canvas;
     private final World world;
-    private final int LENGTH = 100;
     
     public BackgroundRenderer(GameCanvas canvas, World world) {
         this.canvas = canvas;
@@ -28,20 +28,15 @@ public class BackgroundRenderer {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
-//        g.setColor(Color.WHITE);
-//        int r1 = 3, r2 = 100;
-//        g.drawOval(center.x - r1, center.y - r1, r1 + r1, r1 + r1);
-//        g.drawOval(center.x - r2, center.y - r2, r2 + r2, r2 + r2);
     }
     
     public void renderWorldGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
-        for (int i = 0; i < world.width + (world.height % LENGTH == 0 ? 1 : 0); i += LENGTH) {
+        for (int i = 0; i < world.width + (world.height % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
             g.drawLine(i, 0, i, world.height);
         }
-        for (int i = 0; i < world.height + (world.width % LENGTH == 0 ? 1 : 0); i += LENGTH) {
+        for (int i = 0; i < world.height + (world.width % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
             g.drawLine(0, i, world.width, i);
         }
     }
-    
 }

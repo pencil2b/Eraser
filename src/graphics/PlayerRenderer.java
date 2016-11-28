@@ -24,9 +24,21 @@ public class PlayerRenderer {
     
     public void render(Graphics2D g) {
         int r = R + 3 * player.age / 10;
-        g.setColor(Color.WHITE);
+        switch(player.status) {
+            case 0:
+                g.setColor(Color.DARK_GRAY);
+                break;
+            case 1:
+                g.setColor(Color.WHITE);
+                break;
+            case 2:
+                g.setColor(Color.CYAN);
+                break;
+            default:
+                g.setColor(Color.WHITE);
+        }
         g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
         g.setColor(Color.RED);
-        g.drawString(player.name + "(" + player.age + ")", player.x() - r, player.y() - r - 4);
+        g.drawString(String.format("id=%d name=%s age=%d status=%d", player.id, player.name, player.age, player.status), player.x() - r, player.y() - r - 4);
     }
 }
