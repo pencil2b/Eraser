@@ -31,9 +31,6 @@
     1. 客戶端：`restart`
     3. 客戶端開始遊戲
 
-- 客戶端告知伺服器可視範圍
-	1. 客戶端：`visible <WIDTH> <HEIGHT>`
-
 - 伺服器告知客戶端地圖大小
 	1. 伺服器：`size <WIDTH> <HEIGHT>`
 	2. 客戶端修改 World 的長寬
