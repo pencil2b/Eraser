@@ -15,12 +15,11 @@
             <file>file:/Users/dorian/Projects/Eraser/src/eraser/Events.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/graphics/BulletRenderer.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/eraser/Config.java</file>
+            <file>file:/Users/dorian/Projects/Eraser/src/graphics/GameCanvas.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/network/Sender.java</file>
-            <file>file:/Users/dorian/Projects/Eraser/src/network/TCPSocket.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/eraser/Main.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/world/Bullet.java</file>
             <file>file:/Users/dorian/Projects/Eraser/src/world/Player.java</file>
-            <file>file:/Users/dorian/Projects/Eraser/src/network/Receiver.java</file>
         </group>
     </open-files>
 </project-private>

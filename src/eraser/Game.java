@@ -37,7 +37,7 @@ public class Game extends JFrame {
     public Game() {
         super(Config.TITLE);
         
-        String info = StartDialog.getInfo(this);
+        String info = StartDialog.getInfo(this).trim();
         if("".equals(info) || info == null) {
             System.exit(0);
         }
