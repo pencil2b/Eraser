@@ -16,15 +16,15 @@ import java.awt.event.MouseMotionListener;
  */
 public class MouseControl implements MouseMotionListener, MouseListener {
     
-    public Point position;
-    public boolean lock = false;
-    public ControlData savedControl;
+    Point position;
+    boolean lock = false;
+    ControlData savedControl;
     
-    public MouseControl(Point begin) {
+    MouseControl(Point begin) {
         this.position = begin;
     }
     
-    public ControlData getData(Point center) {
+    ControlData getData(Point center) {
         if(lock) {
             return savedControl;
         }

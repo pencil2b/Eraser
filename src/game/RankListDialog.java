@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eraser;
+package game;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -11,13 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import world.Player;
+import data.Player;
 
 /**
  *
  * @author dorian
  */
-public class RankListDialog {
+class RankListDialog {
 
     public static void show(JFrame frame, ArrayList<Player> rankList) {
         String text = String.format("\n%7s\t%7s\t%7s\t%-36s\n\n", "Rank", "Age", "ID", "Name");

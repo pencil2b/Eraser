@@ -1,26 +1,29 @@
 
 package graphics;
 
+import data.Player;
+import data.World;
+import control.MouseControl;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.HashMap;
-import world.*;
 
 /**
  *
  * @author dorian
  */
-public class Scene extends Canvas {
+class Scene extends Canvas {
     
-    AffineTransform transformReverse;
+    private AffineTransform transformReverse;
     
-    public Scene(Dimension canvasSize) {
+    Scene(Dimension canvasSize) {
         setup(canvasSize);
     }
     
@@ -30,28 +33,28 @@ public class Scene extends Canvas {
 	this.setMaximumSize(canvasSize);
     }
     
-    public void render(World world, int playerId, ArrayList<Player> rankList) {
+    void render(World world, int playerId, ArrayList<Player> rankList) {
         
         Graphics2D g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
         
-        BackgroundRenderer.renderBackgroundColor(g, this.getSize());
+        Renderer.renderBackground(g, this.getSize());
         
         transformForPlayer(g, world.findPlayer(playerId));
         
-        BackgroundRenderer.renderWorldGrid(g, new Dimension(world.width, world.height));
+        Renderer.renderGrid(g, new Dimension(world.width, world.height));
         
         
         world.players.forEach((p) -> {
-            PlayerRenderer.render(g, p);
+            Renderer.renderPlayer(g, p);
         });
         
         world.bullets.forEach((b) -> {
-            BulletRenderer.render(g, b);
+            Renderer.renderBullet(g, b);
         });
         
         restoreTransform(g);
         
-        PanelRenderer.renderPanel(g, rankList);
+        Renderer.renderPanel(g, rankList);
         
         g.dispose();
         
@@ -80,11 +83,12 @@ public class Scene extends Canvas {
         g.transform(transformReverse);
     }
     
-    public Point getCenter() {
+    Point getCenter() {
         return new Point(this.getWidth() / 2, this.getHeight() / 2);
     }
-
-    public void render(World world, int id, HashMap<Integer, String> nameList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    void addListeners(MouseControl mouseControl) {
+        addMouseListener(mouseControl);
+        addMouseMotionListener(mouseControl);
     }
 }

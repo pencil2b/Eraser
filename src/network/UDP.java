@@ -15,47 +15,47 @@ import java.util.logging.Logger;
  *
  * @author dorian
  */
-public class UDPSocket {
+class UDP {
     
-    private InetAddress ip;
-    private int port;
-    private DatagramSocket socket;
+    private static InetAddress ip;
+    private static int port;
+    private static DatagramSocket socket;
     
-    public UDPSocket(String remoteIp, int remotePort) {
+    static void init(String remoteIp, int remotePort) {
         try {
             ip = InetAddress.getByName(remoteIp);
         } catch (UnknownHostException ex) {
-            Logger.getLogger(TCPSocket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCP.class.getName()).log(Level.SEVERE, null, ex);
         }
         port = remotePort;
         try {
             socket = new DatagramSocket();
         } catch (SocketException ex) {
-            Logger.getLogger(UDPSocket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void write(byte[] data) {
+    static void write(byte[] data) {
         DatagramPacket packet = new DatagramPacket(data, data.length, ip, port);
         try {
             socket.send(packet);
         } catch (IOException ex) {
-            Logger.getLogger(UDPSocket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public byte[] read() {
+    static byte[] read() {
         byte[] buffer = new byte[65536];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         try {
             socket.receive(packet);
         } catch (IOException ex) {
-            Logger.getLogger(UDPSocket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Arrays.copyOf(buffer, packet.getLength());
     }
     
-    public int getPort() {
+    static int getPort() {
         return socket.getLocalPort();
     }
 }

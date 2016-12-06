@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eraser;
+package game;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import world.Player;
+import data.Player;
 
 /**
  *
  * @author dorian
  */
-public class GameOverDialog {
+class GameOverDialog {
     
     public static int show(JFrame frame, Player player) {
         String message = "[Result]\n";

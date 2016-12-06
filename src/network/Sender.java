@@ -6,7 +6,7 @@
 package network;
 
 import control.ControlData;
-import eraser.Debug;
+import game.Debug;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,47 +17,38 @@ import java.util.logging.Logger;
  *
  * @author dorian
  */
-public class Sender {
-    
-    private final TCPSocket tcp;
-    private final UDPSocket udp;
-    
-    public Sender(TCPSocket tcp, UDPSocket udp) {
-        this.udp = udp;
-        this.tcp = tcp;
+class Sender {
+
+    static void init() {
+
     }
-    
-    public int sendLoginAndGetId(String name) {
-        try {
-            String s = name + "\t" + udp.getPort();
-            Debug.tcpSend(s);
-            tcp.write(s + "\n");
-            s = tcp.read();
-            int id = Integer.parseInt(s.split("\t")[1]);
-            return id;
-        } catch (IOException ex) {
-            Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
+
+    static int sendLoginAndGetId(String name) {
+        String s = name + "\t" + UDP.getPort();
+        Debug.tcpSend(s);
+        TCP.write(s + "\n");
+        s = TCP.read();
+        int id = Integer.parseInt(s.split("\t")[1]);
+        return id;
     }
-    
-    public void sendExit() {
-        tcp.write("exit\n");  
+
+    static void sendExit() {
+        TCP.write("exit\n");
     }
-    
-    public void sendRestart() {
-        tcp.write("restart\n");  
+
+    static void sendRestart() {
+        TCP.write("restart\n");
     }
-    
-    public void sendFullListRequest() {
-        tcp.write("full\n");
+
+    static void sendFullListRequest() {
+        TCP.write("full\n");
     }
-    
-    public void sendVisibleSize(int width, int height) {
-        tcp.write(String.format("visible\t%d\t%d\n", width, height));
+
+    static void sendVisibleSize(int width, int height) {
+        TCP.write(String.format("visible\t%d\t%d\n", width, height));
     }
-    
-    public void sendControl(int id, ControlData data) {
+
+    static void sendControl(int id, ControlData data) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
@@ -65,7 +56,7 @@ public class Sender {
             dos.writeFloat(data.x);
             dos.writeFloat(data.y);
             byte[] buffer = baos.toByteArray();
-            udp.write(buffer);
+            UDP.write(buffer);
         } catch (IOException ex) {
             Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
         }

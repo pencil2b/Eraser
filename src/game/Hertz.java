@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eraser;
+package game;
 
 /**
  *
  * @author dorian
  */
-public class Hertz {
+class Hertz {
     
     private final double NANO_TO_BASE = 1.0e9;
     private long lastUpdateTime;

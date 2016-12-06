@@ -3,35 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eraser;
+package game;
 
 /**
  *
  * @author dorian
  */
 public class Debug {
+
+    public static boolean enabled;
+    
+    
     
     public static void info(String s) {
-        System.out.println("[+] " + s);
+        if(enabled) {
+            System.out.println("[+] " + s);
+        }
     }
     
     public static void error(String s) {
-        System.out.println("[!] " + s);
+        if(enabled) {
+            System.out.println("[!] " + s);
+        }
     }
     
     public static void show(String s) {
-        System.out.println("[*] " + s);
+        if(enabled) {
+            System.out.println("[*] " + s);
+        }
     }
     
     public static void print(String s) {
-        System.out.println(s);
+        if(enabled) {
+            System.out.println(s);
+        }
     }
     
     public static void tcpRecv(String s) {
-        System.out.println("TCP >> " + s);
+        if(enabled) {
+            System.out.println("TCP >> " + s);
+        }
     }
     
     public static void tcpSend(String s) {
-        System.out.println("TCP << " + s);
+        if(enabled) {
+            System.out.println("TCP << " + s);
+        }
     }
 }
