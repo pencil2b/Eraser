@@ -1,9 +1,8 @@
 # Eraser Client
 
 ## TODO
-- graphics/BulletRenderer.java
-- graphics/PlayerRenderer.java
-- 畫面順暢度
+- TCP 傳視野大小
+- UDP 封包改進
 
 ## Network
 
