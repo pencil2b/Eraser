@@ -45,7 +45,7 @@ public class UDPSocket {
     }
     
     public byte[] read() {
-        byte[] buffer = new byte[4096];
+        byte[] buffer = new byte[65536];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         try {
             socket.receive(packet);

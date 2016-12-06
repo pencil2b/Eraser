@@ -7,6 +7,7 @@ package graphics;
 
 import eraser.Config;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import world.World;
 
@@ -16,27 +17,19 @@ import world.World;
  */
 public class BackgroundRenderer {
     
-    private final GameCanvas canvas;
-    private final World world;
-    
-    public BackgroundRenderer(GameCanvas canvas, World world) {
-        this.canvas = canvas;
-        this.world = world;
-    }
-    
-    public void renderBackgroundColor(Graphics2D g) {
+    public static void renderBackgroundColor(Graphics2D g, Dimension canvasSize) {
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        g.fillRect(0, 0, canvasSize.width, canvasSize.height);
         
     }
     
-    public void renderWorldGrid(Graphics2D g) {
+    public static void renderWorldGrid(Graphics2D g, Dimension worldSize) {
         g.setColor(Color.DARK_GRAY);
-        for (int i = 0; i < world.width + (world.height % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
-            g.drawLine(i, 0, i, world.height);
+        for (int i = 0; i < worldSize.width + (worldSize.height % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
+            g.drawLine(i, 0, i, worldSize.height);
         }
-        for (int i = 0; i < world.height + (world.width % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
-            g.drawLine(0, i, world.width, i);
+        for (int i = 0; i < worldSize.height + (worldSize.width % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
+            g.drawLine(0, i, worldSize.width, i);
         }
     }
 }

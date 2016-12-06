@@ -15,14 +15,10 @@ import world.Bullet;
  */
 public class BulletRenderer {
     
-    private final int R = 5;
-    private final Bullet bullet;
+    private static final int R = 5;
     
-    public BulletRenderer(Bullet bullet) {
-        this.bullet = bullet;
-    }
     
-    public void render(Graphics2D g) {
+    public static void render(Graphics2D g, Bullet bullet) {
         g.setColor(Color.GREEN);
         g.drawOval(bullet.x() - R, bullet.y() - R, R + R, R + R);
     }

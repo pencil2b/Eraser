@@ -15,14 +15,9 @@ import world.Player;
  */
 public class PlayerRenderer {
     
-    private final Player player;
-    private final int R = 10;
-
-    public PlayerRenderer(Player player) {
-        this.player = player;
-    }
+    private static final int R = 10;
     
-    public void render(Graphics2D g) {
+    public static void render(Graphics2D g, Player player) {
         int r = R + 3 * player.age / 10;
         switch(player.status) {
             case 0:

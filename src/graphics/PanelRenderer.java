@@ -16,13 +16,7 @@ import world.Player;
  */
 public class PanelRenderer {
     
-    ArrayList<Player> nameList;
-    
-    public PanelRenderer(ArrayList<Player> nameList) {
-        this.nameList = nameList;
-    }
-    
-    public void render(Graphics2D g) {
+    public static void renderPanel(Graphics2D g, ArrayList<Player> nameList) {
         for(int i = 0; i < nameList.size(); i++) {
             g.setColor(Color.GRAY);
             g.drawString(String.format("%2d %s", i + 1, nameList.get(i).name), 10, i * 20 + 20);

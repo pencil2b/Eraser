@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class Game extends JFrame {
 
-    private GameCanvas canvas;
+    private Scene canvas;
     public World world;
     private boolean isStopped;
     public TCPSocket tcp;
@@ -73,7 +73,7 @@ public class Game extends JFrame {
         
         // Setup canvas
         Dimension canvasSize = new Dimension(Config.DEFAULT_CANVAS_WIDTH, Config.DEFAULT_CANVAS_HEIGHT);
-        canvas = new GameCanvas(canvasSize);
+        canvas = new Scene(canvasSize);
         add(canvas);
 
         // Setup window location
@@ -151,9 +151,9 @@ public class Game extends JFrame {
     }
 
     private void graphicsLoop() {
-        FPS fps = new FPS();
+        Hertz hertz = new Hertz(Config.GRAPHICS_UPS);
         while (!isStopped) {
-            fps.adjust(Config.GRAPHICS_UPS);
+            hertz.adjust();
             canvas.render(world, id, events.rankList);
         }
     }
@@ -172,9 +172,9 @@ public class Game extends JFrame {
     }
     
     private void controlSendingLoop() {
-        FPS fps = new FPS();
+        Hertz hertz = new Hertz(Config.CONTROL_UPS);
         while (!isStopped) {
-            fps.adjust(Config.CONTROL_UPS);
+            hertz.adjust();
             if(!isDead) {
                 ControlData data = mouseControl.getData(canvas.getCenter());
                 sender.sendControl(id, data);

@@ -16,11 +16,11 @@ import world.*;
  *
  * @author dorian
  */
-public class GameCanvas extends Canvas {
+public class Scene extends Canvas {
     
     AffineTransform transformReverse;
     
-    public GameCanvas(Dimension canvasSize) {
+    public Scene(Dimension canvasSize) {
         setup(canvasSize);
     }
     
@@ -31,30 +31,27 @@ public class GameCanvas extends Canvas {
     }
     
     public void render(World world, int playerId, ArrayList<Player> rankList) {
+        
         Graphics2D g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
         
-        BackgroundRenderer background = new BackgroundRenderer(this, world);
-        background.renderBackgroundColor(g);
+        BackgroundRenderer.renderBackgroundColor(g, this.getSize());
         
         transformForPlayer(g, world.findPlayer(playerId));
         
-        background.renderWorldGrid(g);
+        BackgroundRenderer.renderWorldGrid(g, new Dimension(world.width, world.height));
         
         
         world.players.forEach((p) -> {
-            PlayerRenderer playerRenderer = new PlayerRenderer(p);
-            playerRenderer.render(g);
+            PlayerRenderer.render(g, p);
         });
         
         world.bullets.forEach((b) -> {
-            BulletRenderer bulletRenderer = new BulletRenderer(b);
-            bulletRenderer.render(g);
+            BulletRenderer.render(g, b);
         });
         
         restoreTransform(g);
         
-        PanelRenderer panelRenderer = new PanelRenderer(rankList);
-        panelRenderer.render(g);
+        PanelRenderer.renderPanel(g, rankList);
         
         g.dispose();
         
