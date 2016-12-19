@@ -74,6 +74,8 @@ public class Events {
                 Network.sendRestart();
                 Game.isDead = false;
                 break;
+            default:
+                System.exit(0);
         }
     }
 }

@@ -42,7 +42,7 @@ class Receiver {
 
             int playerCount = dis.readShort();
             int bulletCount = dis.readShort();
-
+            
             for (int i = 0; i < playerCount; i++) {
                 int id = dis.readShort();
                 double x = dis.readFloat();

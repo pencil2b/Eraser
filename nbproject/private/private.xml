@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/network/TCP.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/network/Network.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/graphics/Graphics.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/data/Bullet.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/Config.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/data/Player.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/Debug.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/Events.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/network/UDP.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/Game.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/data/World.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/network/Receiver.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/graphics/Renderer.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/GameOverDialog.java</file>
-            <file>file:/Users/dorian/NetBeansProjects/Eraser/src/game/GameWindow.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

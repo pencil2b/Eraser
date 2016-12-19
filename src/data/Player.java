@@ -55,12 +55,25 @@ public class Player {
     }
     
     public void update() {
-        if (id != Game.id) {
+        if (id != Game.id || Game.isDead) {
             return;
         }
         ControlData cd = Control.getData();
         x += cd.x * Config.PLAYER_VELOCITY;
         y += cd.y * Config.PLAYER_VELOCITY;
+        
+        if(x > World.getWidth()) {
+            x = World.getWidth();
+        }
+        if(y > World.getHeight()) {
+            y = World.getHeight();
+        }
+        if(x < 0) {
+            x = 0;
+        }
+        if(y < 0) {
+            y = 0;
+        }
     }
     
     public Point position() {

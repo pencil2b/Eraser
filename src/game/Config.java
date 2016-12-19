@@ -34,18 +34,14 @@ public class Config {
     
     public static String END_TITLE = "GAME OVER";
     
-    public static int ADJUST_UPS = 120;
     public static int GRAPHICS_UPS = 120;
     public static int CONTROL_UPS = 30;
     
     public static int PLAYER_DEFAULT_RADIUS = 10;
     public static Color PLAYER_INIT_COLOR = Color.GRAY;
     public static Color PLAYER_NORMAL_COLOR = Color.WHITE;
-    public static Color PLAYER_DEAD_COLOR = Color.CYAN;
-    public static Color PLAYER_NAME_COLOR = Color.YELLOW;
-    public static Color PLAYER_AGE_COLOR = Color.ORANGE;
-    
-    public static int BULLET_RADUIS = 5;
+    public static Color PLAYER_DEAD_COLOR = Color.RED;
+    public static Color PLAYER_NAME_COLOR = Color.ORANGE;
     
     public static Color BACKBROUND_COLOR = Color.BLACK;
     public static Color GRID_COLOR = Color.DARK_GRAY;

@@ -84,13 +84,6 @@ public class Game {
                 controlSendingLoop();
             }
         });
-        
-        threads.add(new Thread() {
-            @Override
-            public void run() {
-                adjustAnimationLoop();
-            }
-        });
 
         // Setting daemon true makes the thread stop when the main thread stop
         threads.stream().map((thread) -> {
@@ -106,17 +99,10 @@ public class Game {
     private static void graphicsLoop() {
         Hertz hertz = new Hertz(Config.GRAPHICS_UPS);
         while (!isStopped) {
+            World.adjust();
             hertz.adjust();
             Graphics.render();
         }
-    }
-    
-    private static void adjustAnimationLoop() {
-        Hertz hertz = new Hertz(Config.ADJUST_UPS);
-        while (!isStopped) {
-            hertz.adjust();
-            World.adjust();
-        } 
     }
 
     private static void controlSendingLoop() {

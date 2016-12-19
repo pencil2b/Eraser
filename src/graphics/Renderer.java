@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import data.Bullet;
 import data.Player;
+import data.World;
 
 /**
  *
@@ -20,7 +21,9 @@ import data.Player;
 class Renderer {
     
     public static void renderPlayer(Graphics2D g, Player player) {
-        
+        if(player.x() > World.getHeight() || player.y() > World.getWidth() || player.x() < 0 || player.y() < 0) {
+            return;
+        }
         int r = Config.PLAYER_DEFAULT_RADIUS + 3 * player.age / 10;
         
         switch(player.status) {
@@ -52,7 +55,10 @@ class Renderer {
     }
     
     public static void renderBullet(Graphics2D g, Bullet bullet) {
-        int r = Config.BULLET_RADUIS;
+        if(bullet.x > World.getHeight() || bullet.y > World.getWidth() || bullet.x < 0 || bullet.y < 0) {
+            return;
+        }
+        int r = Config.BULLET_RADIUS;
         g.setColor(Color.GREEN);
         g.drawOval(bullet.x() - r, bullet.y() - r, r + r, r + r);
     }
