@@ -11,6 +11,7 @@ import java.util.HashMap;
 import network.Network;
 import data.Bullet;
 import data.Player;
+import data.World;
 
 /**
  *
@@ -18,17 +19,26 @@ import data.Player;
  */
 public class Events {
     
-    public static ArrayList<Player> rankList;
-    public static HashMap<Integer, String> nameList;
+    static ArrayList<Player> rankList;
+    static HashMap<Integer, String> nameList;
     
-    public static void init() {
-        nameList = new HashMap<>();
-        rankList = new ArrayList<>();
+    public static HashMap<Integer, String> getNameList() {
+        if(nameList == null) {
+            nameList = new HashMap<>();
+        }
+        return nameList;
     }
+    
+    public static ArrayList<Player> getRankList() {
+        if(rankList == null) {
+            rankList = new ArrayList<>();
+        }
+        return rankList;
+    }
+    
 
     public static void setWorldSize(int width, int height) {
-        Game.world.width = width;
-        Game.world.height = height;
+        World.setSize(width, height);
     }
 
     public static void updateNameList(HashMap<Integer, String> nameList) {
@@ -41,16 +51,16 @@ public class Events {
     
     public static void updateWorld(ArrayList<Player> newPlayers, ArrayList<Bullet> newBullets) {
         newPlayers.forEach((player) -> {
-            String name = nameList.get(player.id);
+            String name = getNameList().get(player.id);
             player.name = (name == null ? "" : name);
         });
-        Game.world.update(newPlayers, newBullets);
+        World.update(newPlayers, newBullets);
     }
     
     public static void die() throws IOException {
         Game.isDead = true;
-        Player me = Game.world.findPlayer(Game.id);
-        int code = GameOverDialog.show(Game.window, new Player(1, nameList.get(Game.id), me.age, 1));
+        Player me = World.findPlayer(Game.id);
+        int code = GameOverDialog.show(Game.window, new Player(1, getNameList().get(Game.id), me.age, 1));
         switch (code) {
             case 0: // Exit
                 System.exit(0);

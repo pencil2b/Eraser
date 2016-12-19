@@ -37,7 +37,7 @@ public class Config {
     public static int CONTROL_UPS = 30;
     
     public static int PLAYER_DEFAULT_RADIUS = 10;
-    public static Color PLAYER_INIT_COLOR = Color.DARK_GRAY;
+    public static Color PLAYER_INIT_COLOR = Color.GRAY;
     public static Color PLAYER_NORMAL_COLOR = Color.WHITE;
     public static Color PLAYER_DEAD_COLOR = Color.CYAN;
     public static Color PLAYER_NAME_COLOR = Color.YELLOW;

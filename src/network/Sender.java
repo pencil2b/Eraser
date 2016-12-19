@@ -32,20 +32,12 @@ class Sender {
         return id;
     }
 
-    static void sendExit() {
-        TCP.write("exit\n");
-    }
-
     static void sendRestart() {
         TCP.write("restart\n");
     }
 
     static void sendFullListRequest() {
         TCP.write("full\n");
-    }
-
-    static void sendVisibleSize(int width, int height) {
-        TCP.write(String.format("visible\t%d\t%d\n", width, height));
     }
 
     static void sendControl(int id, ControlData data) {

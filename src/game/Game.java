@@ -25,20 +25,20 @@ public class Game {
 
     public static void init() {
         window = new GameWindow();
-        world = new World();
         isStopped = false;
         isDead = false;
         
         
-        String info = StartDialog.getInfo().trim();
+        String info = StartDialog.getInfo();
         
-        if("".equals(info) || info == null) {
+        if(info == null || info.equals("")) {
             System.exit(0);
         }
         
         try {
-            name = info.split("@")[0];
-            server = info.split("@")[1];
+            String[] infoSplit = info.trim().split("@");
+            name = infoSplit[0];
+            server = infoSplit[1];
         } catch(Exception e) {
             System.exit(0);
         }
@@ -47,8 +47,6 @@ public class Game {
         id = Network.sendLoginAndGetId();
         Debug.info(" ID: " + id);
         
-        Events.init();
-        Control.init();
         Graphics.init();
     }
 
@@ -92,7 +90,7 @@ public class Game {
             thread.start();
         });
         
-        Graphics.getCanvas().requestFocus();
+        
         window.setVisible(true);
     }
 
@@ -104,6 +102,16 @@ public class Game {
         }
     }
 
+    private static void controlSendingLoop() {
+        Hertz hertz = new Hertz(Config.CONTROL_UPS);
+        while (!isStopped) {
+            hertz.adjust();
+            if(!isDead) {
+                Network.sendControl();
+            }
+        }
+    }
+    
     private static void updateWorldLoop() {
         while (!isStopped) {
             Network.updateWorld();
@@ -114,16 +122,6 @@ public class Game {
     private static void eventDispatchLoop() {
         while (!isStopped) {
             Network.dispatchEvent();
-        }
-    }
-    
-    private static void controlSendingLoop() {
-        Hertz hertz = new Hertz(Config.CONTROL_UPS);
-        while (!isStopped) {
-            hertz.adjust();
-            if(!isDead) {
-                Network.sendControl();
-            }
         }
     }
     

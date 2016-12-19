@@ -18,29 +18,31 @@ import java.awt.Point;
  * @author dorian
  */
 public class Graphics {
-    
-    public static Scene canvas;
-    
+
+    static Scene canvas;
+
     public static void init() {
-        Dimension canvasSize = new Dimension(Config.DEFAULT_CANVAS_WIDTH, Config.DEFAULT_CANVAS_HEIGHT);
-        canvas = new Scene(canvasSize);
-        Game.window.add(canvas);
-        canvas.setIgnoreRepaint(true);
-        canvas.createBufferStrategy(2);
-        canvas.requestFocus();
-        canvas.addListeners(Control.mouse);
+        Game.window.add(getCanvas());
+        getCanvas().setIgnoreRepaint(true);
+        getCanvas().createBufferStrategy(2);
+        getCanvas().requestFocus();
+        getCanvas().addListeners(Control.getInstance());
     }
-    
+
     public static void render() {
-        canvas.render(Game.world, Game.id, Events.rankList);
+        getCanvas().render();
     }
-    
+
     public static Point getCenter() {
-        return canvas.getCenter();
+        return getCanvas().getCenter();
     }
-    
-    public static Canvas getCanvas() {
+
+    static Scene getCanvas() {
+        if (canvas == null) {
+            Dimension canvasSize = new Dimension(Config.DEFAULT_CANVAS_WIDTH, Config.DEFAULT_CANVAS_HEIGHT);
+            canvas = new Scene(canvasSize);
+        }
         return canvas;
     }
-    
+
 }

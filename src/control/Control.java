@@ -16,15 +16,18 @@ import java.awt.Point;
  */
 public class Control {
     
-    public static MouseControl mouse;
+    static MouseControl mouse;
     
-    public static void init() {
-        Point center = new Point(Config.DEFAULT_CANVAS_WIDTH / 2, Config.DEFAULT_CANVAS_HEIGHT / 2);
-        mouse = new MouseControl(center);
+    public static MouseControl getInstance() {
+        if(mouse == null) {
+            Point center = new Point(Config.DEFAULT_CANVAS_WIDTH / 2, Config.DEFAULT_CANVAS_HEIGHT / 2);
+            mouse = new MouseControl(center);
+        }
+        return mouse;
     }
     
     public static ControlData getData() {
-        return mouse.getData(Graphics.getCenter());
+        return getInstance().getData(Graphics.getCenter());
     }
     
 }

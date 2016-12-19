@@ -14,24 +14,62 @@ import java.util.ArrayList;
  */
 public class World {
     
-    public ArrayList<Player> players;
-    public ArrayList<Bullet> bullets;
+    public static void setSize(int w, int h) {
+        getInstance().width = w;
+        getInstance().height = h;
+    }
     
-    public int width, height;
+    public static Player findPlayer(int id) {
+        return getInstance().findPlayerById(id);
+    }
     
-    public World() {
+    public static void update(ArrayList newPlayers, ArrayList newBullets) {
+        getInstance().updateObjects(newPlayers, newBullets);
+    }
+    
+    public static int getWidth() {
+        return world.width;
+    }
+    
+    public static int getHeight() {
+        return world.height;
+    }
+    
+    public static ArrayList<Player> getPlayers() {
+        return getInstance().players;
+    }
+    
+    public static ArrayList<Bullet> getBullets() {
+        return getInstance().bullets;
+    }
+    
+    static World world;
+    
+    static World getInstance() {
+        if(world == null) {
+            world = new World();
+        }
+        return world;
+    }
+    
+    ArrayList<Player> players;
+    ArrayList<Bullet> bullets;
+    
+    int width, height;
+    
+    World() {
         width = Config.DEFAULT_WORLD_WIDTH;
         height = Config.DEFAULT_WORLD_HEIGHT;
         players = new ArrayList<>();
         bullets = new ArrayList<>();
     }
     
-    public void update(ArrayList newPlayers, ArrayList newBullets) {
+    void updateObjects(ArrayList newPlayers, ArrayList newBullets) {
         players = newPlayers;
         bullets = newBullets;
     } 
     
-    public Player findPlayer(int id) {
+    Player findPlayerById(int id) {
         for(Player player : players) {
             if(player.id == id) {
                 return player;
