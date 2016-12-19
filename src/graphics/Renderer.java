@@ -6,7 +6,6 @@
 package graphics;
 
 import game.Config;
-import game.Debug;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -41,7 +40,7 @@ class Renderer {
         g.drawOval(player.x() - r, player.y() - r, r + r, r + r);
         
         g.setColor(Config.PLAYER_NAME_COLOR);
-        g.drawString(String.format("id=%d name=%s age=%d status=%d", player.id, player.name, player.age, player.status), player.x() - r, player.y() - r - 4);
+        g.drawString(String.format("[%s]", player.name), player.x() - r, player.y() - r - 4);
         
     }
     
@@ -66,10 +65,10 @@ class Renderer {
     
     public static void renderGrid(Graphics2D g, Dimension worldSize) {
         g.setColor(Color.DARK_GRAY);
-        for (int i = 0; i < worldSize.width + (worldSize.height % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
+        for (int i = 0; i < worldSize.width + (worldSize.height % Config.GRID_WIDTH == 0 ? 1 : 0); i += Config.GRID_WIDTH) {
             g.drawLine(i, 0, i, worldSize.height);
         }
-        for (int i = 0; i < worldSize.height + (worldSize.width % Config.GRID_LENGTH == 0 ? 1 : 0); i += Config.GRID_LENGTH) {
+        for (int i = 0; i < worldSize.height + (worldSize.width % Config.GRID_WIDTH == 0 ? 1 : 0); i += Config.GRID_WIDTH) {
             g.drawLine(0, i, worldSize.width, i);
         }
     }

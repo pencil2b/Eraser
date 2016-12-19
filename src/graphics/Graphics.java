@@ -7,9 +7,7 @@ package graphics;
 
 import control.Control;
 import game.Config;
-import game.Events;
 import game.Game;
-import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Point;
 

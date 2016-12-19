@@ -1,10 +1,10 @@
-
 package game;
 
 import data.World;
 import control.*;
 import network.*;
 import graphics.*;
+import java.io.IOException;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 
@@ -22,63 +22,73 @@ public class Game {
     public static String name;
     public static boolean isDead;
 
-
     public static void init() {
         window = new GameWindow();
         isStopped = false;
         isDead = false;
-        
-        
+
         String info = StartDialog.getInfo();
-        
-        if(info == null || info.equals("")) {
+
+        if (info == null || info.equals("")) {
             System.exit(0);
         }
-        
+
         try {
             String[] infoSplit = info.trim().split("@");
             name = infoSplit[0];
             server = infoSplit[1];
-        } catch(Exception e) {
+
+            
+            System.out.println("TCP - Connecting...");
+            Network.init();
+            System.out.println("TCP - Connection established...");
+            
+            id = Network.sendLoginAndGetId();
+            Debug.info(" ID: " + id);
+            
+            Graphics.init();
+        } catch (IOException e) {
+            System.out.println("Error at initialization");
             System.exit(0);
         }
-        
-        Network.init();
-        id = Network.sendLoginAndGetId();
-        Debug.info(" ID: " + id);
-        
-        Graphics.init();
     }
 
     public static void start() {
-        
+
         ArrayList<Thread> threads = new ArrayList<>();
-        
+
         threads.add(new Thread() {
             @Override
             public void run() {
                 graphicsLoop();
             }
         });
-        
+
         threads.add(new Thread() {
             @Override
             public void run() {
                 updateWorldLoop();
             }
         });
-        
+
         threads.add(new Thread() {
             @Override
             public void run() {
                 eventDispatchLoop();
             }
         });
-        
+
         threads.add(new Thread() {
             @Override
             public void run() {
                 controlSendingLoop();
+            }
+        });
+        
+        threads.add(new Thread() {
+            @Override
+            public void run() {
+                adjustAnimationLoop();
             }
         });
 
@@ -89,8 +99,7 @@ public class Game {
         }).forEachOrdered((thread) -> {
             thread.start();
         });
-        
-        
+
         window.setVisible(true);
     }
 
@@ -101,30 +110,38 @@ public class Game {
             Graphics.render();
         }
     }
+    
+    private static void adjustAnimationLoop() {
+        Hertz hertz = new Hertz(Config.ADJUST_UPS);
+        while (!isStopped) {
+            hertz.adjust();
+            World.adjust();
+        } 
+    }
 
     private static void controlSendingLoop() {
         Hertz hertz = new Hertz(Config.CONTROL_UPS);
         while (!isStopped) {
             hertz.adjust();
-            if(!isDead) {
+            if (!isDead) {
                 Network.sendControl();
             }
         }
     }
-    
+
     private static void updateWorldLoop() {
         while (!isStopped) {
             Network.updateWorld();
         }
     }
-    
+
     // update rank, your status, 
     private static void eventDispatchLoop() {
         while (!isStopped) {
             Network.dispatchEvent();
         }
     }
-    
+
     public static void stop() {
         isStopped = true;
     }

@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,25 +16,18 @@ import java.util.logging.Logger;
  * @author dorian
  */
 class UDP {
-    
+
     private static InetAddress ip;
     private static int port;
     private static DatagramSocket socket;
-    
-    static void init(String remoteIp, int remotePort) {
-        try {
-            ip = InetAddress.getByName(remoteIp);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(TCP.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    static void init(String remoteIp, int remotePort) throws UnknownHostException, SocketException {
+        ip = InetAddress.getByName(remoteIp);
         port = remotePort;
-        try {
-            socket = new DatagramSocket();
-        } catch (SocketException ex) {
-            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        socket = new DatagramSocket();
+        
     }
-    
+
     static void write(byte[] data) {
         DatagramPacket packet = new DatagramPacket(data, data.length, ip, port);
         try {
@@ -43,7 +36,7 @@ class UDP {
             Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     static byte[] read() {
         byte[] buffer = new byte[65536];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -54,7 +47,7 @@ class UDP {
         }
         return Arrays.copyOf(buffer, packet.getLength());
     }
-    
+
     static int getPort() {
         return socket.getLocalPort();
     }

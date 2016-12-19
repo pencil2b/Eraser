@@ -31,9 +31,9 @@ class GameWindow extends JFrame {
         setLocation(windowLocationX, windowLocationY);
 
         // Setup window size
-        setMinimumSize(new Dimension(Config.MIN_CANVAS_WIDTH, Config.MIN_CANVAS_HEIGHT));
+        setMinimumSize(new Dimension(Config.DEFAULT_CANVAS_WIDTH, Config.DEFAULT_CANVAS_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        this.setResizable(false);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

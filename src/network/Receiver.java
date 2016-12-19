@@ -56,14 +56,15 @@ class Receiver {
             for (int i = 0; i < bulletCount; i++) {
                 double x = dis.readFloat();
                 double y = dis.readFloat();
-                int status = dis.readByte();
-                Bullet bullet = new Bullet(x, y, status);
+                double vx = dis.readFloat();
+                double vy = dis.readFloat();
+                Bullet bullet = new Bullet(x, y, vx, vy);
                 newBullets.add(bullet);
             }
-
             Events.updateWorld(newPlayers, newBullets);
-
+            
         } catch (IOException ex) {
+            System.exit(0);
             Logger.getLogger(Receiver.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

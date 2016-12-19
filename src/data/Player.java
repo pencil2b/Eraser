@@ -5,6 +5,10 @@
  */
 package data;
 
+import control.Control;
+import control.ControlData;
+import game.Config;
+import game.Game;
 import java.awt.Point;
 
 /**
@@ -26,21 +30,19 @@ public class Player {
         this.name = "";
     }
     
-    public Player(int id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
     
     public Player(int id, String name) {
         this.id = id;
         this.name = name;
     }
     
-    public Player(int id, String name, int age, int rank) {
-        this.id = id;
-        this.name = name;
+    public Player(int id, String name, int age) {
+        this(id, name);
         this.age = age;
+    }
+    
+    public Player(int id, String name, int age, int rank) {
+        this(id, name, age);
         this.rank = rank;
     }
     
@@ -50,6 +52,15 @@ public class Player {
     
     public int y() {
         return (int) this.y;
+    }
+    
+    public void update() {
+        if (id != Game.id) {
+            return;
+        }
+        ControlData cd = Control.getData();
+        x += cd.x * Config.PLAYER_VELOCITY;
+        y += cd.y * Config.PLAYER_VELOCITY;
     }
     
     public Point position() {

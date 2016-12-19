@@ -6,6 +6,7 @@
 package data;
 
 import game.Config;
+import game.Game;
 import java.util.ArrayList;
 
 /**
@@ -24,15 +25,19 @@ public class World {
     }
     
     public static void update(ArrayList newPlayers, ArrayList newBullets) {
-        getInstance().updateObjects(newPlayers, newBullets);
+        getInstance().setObjects(newPlayers, newBullets);
+    }
+    
+    public static void adjust() {
+        getInstance().adjustPosotion();
     }
     
     public static int getWidth() {
-        return world.width;
+        return  getInstance().width;
     }
     
     public static int getHeight() {
-        return world.height;
+        return  getInstance().height;
     }
     
     public static ArrayList<Player> getPlayers() {
@@ -64,10 +69,19 @@ public class World {
         bullets = new ArrayList<>();
     }
     
-    void updateObjects(ArrayList newPlayers, ArrayList newBullets) {
+    void setObjects(ArrayList newPlayers, ArrayList newBullets) {
         players = newPlayers;
         bullets = newBullets;
-    } 
+    }
+    
+    void adjustPosotion() {
+        players.forEach((p) -> {
+            p.update();
+        });
+        bullets.forEach((b) -> {
+            b.update();
+        });
+    }
     
     Player findPlayerById(int id) {
         for(Player player : players) {

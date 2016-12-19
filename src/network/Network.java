@@ -9,6 +9,7 @@ import control.Control;
 import game.Game;
 import java.util.ArrayList;
 import data.Player;
+import java.io.IOException;
 
 /**
  *
@@ -16,7 +17,7 @@ import data.Player;
  */
 public class Network {  
     
-    public static void init() {
+    public static void init() throws IOException {
         String ip = Game.server.split(":")[0];
         int port = Integer.parseInt(Game.server.split(":")[1]);
         TCP.init(ip, port);

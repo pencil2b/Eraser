@@ -14,12 +14,14 @@ import java.awt.Point;
 public class Bullet {
     
     public double x, y;
-    public int status;
+    public double vx, vy;
+
     
-    public Bullet(double x, double y, int status) {
+    public Bullet(double x, double y, double vx, double vy) {
         this.x = x;
         this.y = y;
-        this.status = status;
+        this.vx = vx;
+        this.vy = vy;
     }
     
     public int x() {
@@ -28,6 +30,11 @@ public class Bullet {
     
     public int y() {
         return (int) this.y;
+    }
+    
+    public void update() {
+        x += vx;
+        y += vy;
     }
     
     public Point position() {
