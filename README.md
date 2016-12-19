@@ -219,7 +219,6 @@ float y = dis.readFloat();
     - 速度： (SPEED_MAX-SPEED_LEAST)*rand.nextFloat()+SPEED_LEAST;
     - 方向： 由生出的位置，朝內部發射
     - 位置： 固定x或y，另一個取亂數 （＝邊界）
----
 
 ## 設計
 
