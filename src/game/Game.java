@@ -1,14 +1,14 @@
 package game;
 
 import data.World;
-import control.*;
-import network.*;
-import graphics.*;
+import graphics.Graphics;
 import java.io.IOException;
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import network.Network;
 
 /**
+ * Game module
  *
  * @author dorian
  */
@@ -30,6 +30,7 @@ public class Game {
         String info = StartDialog.getInfo();
 
         if (info == null || info.equals("")) {
+            Debug.error("Empty input");
             System.exit(0);
         }
 
@@ -38,17 +39,17 @@ public class Game {
             name = infoSplit[0];
             server = infoSplit[1];
 
-            
-            System.out.println("TCP - Connecting...");
+            Debug.info("Connecting to " + server);
             Network.init();
-            System.out.println("TCP - Connection established...");
-            
+            Debug.success("Connection established");
+
             id = Network.sendLoginAndGetId();
-            Debug.info(" ID: " + id);
-            
+            Debug.success("Got id=" + id);
+
+            Debug.info("Initialize graphics");
             Graphics.init();
         } catch (IOException e) {
-            System.out.println("Error at initialization");
+            Debug.error("Something went wrong while initializing");
             System.exit(0);
         }
     }
@@ -85,7 +86,7 @@ public class Game {
             }
         });
 
-        // Setting daemon true makes the thread stop when the main thread stop
+        Debug.info("Start threads");
         threads.stream().map((thread) -> {
             thread.setDaemon(true);
             return thread;
@@ -93,13 +94,15 @@ public class Game {
             thread.start();
         });
 
+        Debug.info("Show window");
         window.setVisible(true);
     }
 
     private static void graphicsLoop() {
         Hertz hertz = new Hertz(Config.GRAPHICS_UPS);
+
         while (!isStopped) {
-            World.adjust();
+            World.adjust(); // Better animation
             hertz.adjust();
             Graphics.render();
         }
@@ -107,8 +110,10 @@ public class Game {
 
     private static void controlSendingLoop() {
         Hertz hertz = new Hertz(Config.CONTROL_UPS);
+
         while (!isStopped) {
             hertz.adjust();
+
             if (!isDead) {
                 Network.sendControl();
             }
@@ -129,6 +134,7 @@ public class Game {
     }
 
     public static void stop() {
+        Debug.info("Stop");
         isStopped = true;
     }
 }

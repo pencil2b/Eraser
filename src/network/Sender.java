@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package network;
 
 import control.ControlData;
@@ -14,14 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Sender
  *
  * @author dorian
  */
 class Sender {
-
-    static void init() {
-
-    }
 
     static int sendLoginAndGetId(String name) {
         String s = name + "\t" + UDP.getPort();

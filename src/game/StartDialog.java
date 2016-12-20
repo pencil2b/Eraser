@@ -3,9 +3,9 @@ package game;
 import javax.swing.JOptionPane;
 
 /**
- * A Simple Login Dialog
+ * Login dialog
  *
- * @author Oliver Watkins (c)
+ * @author dorian
  */
 class StartDialog {
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.io.IOException;
@@ -14,28 +9,30 @@ import data.Player;
 import data.World;
 
 /**
+ * Events module
  *
  * @author dorian
  */
 public class Events {
-    
+
     static ArrayList<Player> rankList;
     static HashMap<Integer, String> nameList;
-    
+
     public static HashMap<Integer, String> getNameList() {
-        if(nameList == null) {
+        if (nameList == null) {
             nameList = new HashMap<>();
         }
+
         return nameList;
     }
-    
+
     public static ArrayList<Player> getRankList() {
-        if(rankList == null) {
+        if (rankList == null) {
             rankList = new ArrayList<>();
         }
+
         return rankList;
     }
-    
 
     public static void setWorldSize(int width, int height) {
         World.setSize(width, height);
@@ -44,23 +41,26 @@ public class Events {
     public static void updateNameList(HashMap<Integer, String> nameList) {
         Events.nameList = nameList;
     }
-    
+
     public static void updateRankList(ArrayList<Player> rankList) {
         Events.rankList = rankList;
     }
-    
+
     public static void updateWorld(ArrayList<Player> newPlayers, ArrayList<Bullet> newBullets) {
         newPlayers.forEach((player) -> {
             String name = getNameList().get(player.id);
             player.name = (name == null ? "" : name);
         });
+
         World.update(newPlayers, newBullets);
     }
-    
+
     public static void die() throws IOException {
         Game.isDead = true;
         Player me = World.findPlayer(Game.id);
+
         int code = GameOverDialog.show(Game.window, new Player(1, getNameList().get(Game.id), me.age, 1));
+
         switch (code) {
             case 0: // Exit
                 System.exit(0);

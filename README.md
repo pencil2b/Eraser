@@ -66,7 +66,7 @@ F. 其他
 
 #### GameWindow
 
-- 大小：800*600 px
+- 大小：800\*600 px
 - 裡面只有一個 Canvas
 
 #### GameOverDialog
@@ -143,24 +143,24 @@ F. 其他
 #### UDP 資料格式
 
 - 伺服器廣播物件資料給客戶端（轉成 bytes 全部串在一起一個封包）
-    - **玩家數量：short**
-    - **子彈數量：short**
+    - 玩家數量：short
+    - 子彈數量：short
     - 該玩家所有可見的玩家資料（多筆）
-        - **ID：short**
-        - **X：float**
-        - **Y：float**
-        - **Age：short**
-        - **Status：byte**
+        - ID：short
+        - X：float
+        - Y：float
+        - Age：short
+        - Status：byte
     - 該玩家所有可見的子彈資料（多筆）
-        - **X：float**
-        - **Y：float**
-        - **VX : float**
-        - **VY : float** 
+        - X：float
+        - Y：float
+        - VX : float
+        - VY : float
 
 - 客戶端傳送控制資料給伺服器（同上，為單位向量）
-    - **ID：short**
-    - **X：float**
-    - **Y：float**
+    - ID：short
+    - X：float
+    - Y：float
 
 處理 byte[] 轉換
 

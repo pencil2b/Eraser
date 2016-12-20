@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.awt.Dimension;
@@ -12,16 +7,17 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
+ * Main game window
  *
  * @author dorian
  */
 class GameWindow extends JFrame {
-    
+
     public GameWindow() {
         super(Config.TITLE);
         setup();
     }
-    
+
     private void setup() {
 
         // Setup window location
@@ -41,8 +37,8 @@ class GameWindow extends JFrame {
                 super.windowClosing(e);
             }
         });
-        
+
         pack();
     }
-    
+
 }
