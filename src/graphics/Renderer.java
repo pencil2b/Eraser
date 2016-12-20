@@ -55,7 +55,7 @@ class Renderer {
             return;
         }
         int r = Config.BULLET_RADIUS;
-        g.setColor(Color.GREEN);
+        g.setColor(Config.BULLET_COLOR);
         g.drawOval(bullet.x() - r, bullet.y() - r, r + r, r + r);
     }
 
