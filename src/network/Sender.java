@@ -17,7 +17,6 @@ class Sender {
 
     static int sendLoginAndGetId(String name) {
         String s = name + "\t" + UDP.getPort();
-        Debug.tcpSend(s);
         TCP.write(s + "\n");
         s = TCP.read();
         int id = Integer.parseInt(s.split("\t")[1]);
