@@ -12,7 +12,7 @@ import data.Player;
 class GameOverDialog {
 
     public static int show(JFrame frame, Player player) {
-        String message = "[Result]\n";
+        String message = "[ Result ]\n";
         message += "Name: " + player.name + "\n";
         message += "Age: " + player.age + "\n";
         message += "Rank: " + player.rank + "\n";

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  */
 public class Debug {
 
-    public static boolean enabled;
+    public static boolean enabled = false;
 
     public static void notice(String s) {
         if (enabled) {
@@ -31,13 +31,13 @@ public class Debug {
     
     public static void error(String s) {
         if (enabled) {
-            System.out.println("[!] " + s);
+            System.out.println("[-] " + s);
         }
     }
     
     public static void die(String s) {
         if (enabled) {
-            System.out.println("[X] " + s);
+            System.out.println("[!] " + s);
         }
         Game.stop();
         JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.ERROR_MESSAGE);
@@ -52,13 +52,13 @@ public class Debug {
 
     public static void tcpRecv(String s) {
         if (enabled) {
-            System.out.println("TCP >> " + s);
+            System.out.println("TCP => " + s);
         }
     }
 
     public static void tcpSend(String s) {
         if (enabled) {
-            System.out.println("TCP << " + s);
+            System.out.println("TCP <= " + s);
         }
     }
 }

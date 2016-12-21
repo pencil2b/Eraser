@@ -44,5 +44,6 @@ public class Config {
     public static Color BACKBROUND_COLOR = Color.BLACK;
     public static Color GRID_COLOR = Color.DARK_GRAY;
     public static Color RANK_COLOR = Color.LIGHT_GRAY;
+    public static Color RANK_HIGHLIGHT_COLOR = Color.YELLOW;
     
 }

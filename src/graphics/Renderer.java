@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import data.Bullet;
 import data.Player;
 import data.World;
+import game.Game;
 
 /**
  * Renderer
@@ -44,9 +45,13 @@ class Renderer {
     }
 
     public static void renderPanel(Graphics2D g, ArrayList<Player> nameList) {
+        g.setColor(Config.RANK_COLOR);
+        g.drawString("Place", 10, 20);
+        
         for (int i = 0; i < nameList.size(); i++) {
-            g.setColor(Config.RANK_COLOR);
-            g.drawString(String.format("%2d %s", i + 1, nameList.get(i).name), 10, i * 20 + 20);
+            Player player = nameList.get(i);
+            g.setColor(player.id == Game.id ? Config.RANK_HIGHLIGHT_COLOR : Config.RANK_COLOR);
+            g.drawString(String.format("%2d [%s]", i + 1, player.name), 10, (i + 2) * 20);
         }
     }
 

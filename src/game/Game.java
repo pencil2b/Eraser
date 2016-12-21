@@ -4,6 +4,8 @@ import data.World;
 import graphics.Graphics;
 import java.io.IOException;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import network.Network;
@@ -30,10 +32,6 @@ public class Game {
 
         String info = StartDialog.getInfo();
 
-        if (info == null || info.equals("")) {
-            Debug.die("Empty input");
-        }
-
         try {
             String[] infoSplit = info.trim().split("@");
             name = infoSplit[0];
@@ -48,12 +46,22 @@ public class Game {
 
             Debug.info("Initialize graphics");
             Graphics.init();
+        } catch (SocketTimeoutException e) {
+            Debug.die("Connection timeout.");
+        } catch (UnknownHostException e) {
+            Debug.die("Invalid host name.");
         } catch (IOException e) {
-            Debug.die("Connection failed");
-        } catch(ArrayIndexOutOfBoundsException e) {
-            Debug.die("Wrong input");
-        } catch(NumberFormatException e) {
-            Debug.die("Port is a number, please");
+            Debug.die("Connection failed.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Debug.die("Invalid input.");
+        } catch (NumberFormatException e) {
+            Debug.die("Port is an integer, please!");
+        } catch (IllegalArgumentException e) {
+            Debug.die("Not a valid port.");
+        } catch(NullPointerException e) {
+            System.exit(0);
+        } catch (Exception e) {
+            Debug.die("WTF exception");
         }
     }
 
@@ -88,7 +96,7 @@ public class Game {
                 controlSendingLoop();
             }
         });
-        
+
         Debug.info("Start threads");
         threads.stream().map((thread) -> {
             thread.setDaemon(true);

@@ -16,12 +16,12 @@ import data.Player;
 class RankListDialog {
 
     public static void show(JFrame frame, ArrayList<Player> rankList) {
-        String text = String.format("\n%7s\t%7s\t%7s\t%-36s\n\n", "Rank", "Age", "ID", "Name");
+        String text = String.format("\n%9s\t%7s\t%7s\t%-36s\n\n", "Place", "Age", "ID", "Name");
 
         if (rankList != null) {
             for (int i = 0; i < rankList.size(); i++) {
                 Player p = rankList.get(i);
-                text += String.format("%7d\t%7d\t%7d\t%-36s\n\n", i + 1, p.age, p.id, p.name);
+                text += String.format("%9d\t%7d\t%7d\t%-36s\n\n", i + 1, p.age, p.id, p.name);
             }
         } else {
             text += "Nothing in list";
