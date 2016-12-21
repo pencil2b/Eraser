@@ -1,5 +1,7 @@
 package game;
 
+import javax.swing.JOptionPane;
+
 /**
  * Print debug messages
  *
@@ -21,16 +23,25 @@ public class Debug {
         }
     }
 
+    public static void info(String s) {
+        if (enabled) {
+            System.out.println("[*] " + s);
+        }
+    }
+    
     public static void error(String s) {
         if (enabled) {
             System.out.println("[!] " + s);
         }
     }
-
-    public static void info(String s) {
+    
+    public static void die(String s) {
         if (enabled) {
-            System.out.println("[*] " + s);
+            System.out.println("[X] " + s);
         }
+        Game.stop();
+        JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
     }
 
     public static void print(String s) {

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,9 +42,12 @@ class TCP {
         try {
             String s = reader.readLine();
             Debug.tcpRecv(s);
+            if(s == null) {
+                Debug.die("Connection error");
+            }
             return s;
         } catch (IOException ex) {
-            Logger.getLogger(TCP.class.getName()).log(Level.SEVERE, null, ex);
+            Debug.die("Connection error");
         }
         return null;
     }

@@ -54,8 +54,7 @@ class Receiver {
             Events.updateWorld(newPlayers, newBullets);
 
         } catch (IOException ex) {
-            Debug.error("Error updating world");
-            System.exit(0);
+            Debug.die("Error updating world");
         }
     }
 
@@ -91,11 +90,12 @@ class Receiver {
                     Events.die();
                     break;
                 default:
-                    Debug.error("Receive UNKNOWEN: " + eventString);
+                    Debug.die("Receive UNKNOWEN: " + eventString);
             }
         } catch (IOException ex) {
-            Debug.error("Error dispatching event");
-            System.exit(0);
+            Debug.die("Error dispatching event");
+        } catch(NullPointerException e) {
+            Debug.die("Connection error");
         }
     }
 

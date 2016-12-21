@@ -3,6 +3,7 @@ package game;
 import data.World;
 import graphics.Graphics;
 import java.io.IOException;
+import java.net.SocketException;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import network.Network;
@@ -30,8 +31,7 @@ public class Game {
         String info = StartDialog.getInfo();
 
         if (info == null || info.equals("")) {
-            Debug.error("Empty input");
-            System.exit(0);
+            Debug.die("Empty input");
         }
 
         try {
@@ -49,11 +49,11 @@ public class Game {
             Debug.info("Initialize graphics");
             Graphics.init();
         } catch (IOException e) {
-            Debug.error("Something went wrong while initializing");
-            System.exit(0);
+            Debug.die("Connection failed");
         } catch(ArrayIndexOutOfBoundsException e) {
-            Debug.error("Wrong input");
-            System.exit(0);
+            Debug.die("Wrong input");
+        } catch(NumberFormatException e) {
+            Debug.die("Port is a number, please");
         }
     }
 
@@ -88,7 +88,7 @@ public class Game {
                 controlSendingLoop();
             }
         });
-
+        
         Debug.info("Start threads");
         threads.stream().map((thread) -> {
             thread.setDaemon(true);

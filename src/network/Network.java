@@ -47,22 +47,4 @@ public class Network {
     public static void sendControl() {
         Sender.sendControl(Game.id, Control.getData());
     }
-
-    /*
-    public static void tcpWrite(String data) {
-        TCP.write(data);
-    }
-    
-    public static String tcpRead() {
-        return TCP.read();
-    }
-    
-    public static void udpWrite(byte[] data) {
-        UDP.write(data);
-    }
-    
-    public static byte[] udpRead() {
-        return UDP.read();
-    }
-     */
 }
