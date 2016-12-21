@@ -26,7 +26,7 @@ public class Config {
     public static String TITLE = "Eraser";
 
     public static String START_TITLE = "WELCOME";
-    public static String START_MESSAGE = "To connect to the server,\nplease input: \"NAME@IP:PORT\"";
+    public static String START_MESSAGE = "To connect to the server,\nplease input: \"<name>@<hostname>:<port>\"";
 
     public static String END_TITLE = "GAME OVER";
 

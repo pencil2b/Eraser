@@ -3,7 +3,6 @@ package game;
 import data.World;
 import graphics.Graphics;
 import java.io.IOException;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import javax.swing.JFrame;
@@ -42,7 +41,7 @@ public class Game {
             Debug.success("Connection established");
 
             id = Network.sendLoginAndGetId();
-            Debug.success("Got id=" + id);
+            Debug.success("Login id=" + id);
 
             Debug.info("Initialize graphics");
             Graphics.init();
