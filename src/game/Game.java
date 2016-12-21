@@ -51,6 +51,9 @@ public class Game {
         } catch (IOException e) {
             Debug.error("Something went wrong while initializing");
             System.exit(0);
+        } catch(ArrayIndexOutOfBoundsException e) {
+            Debug.error("Wrong input");
+            System.exit(0);
         }
     }
 
