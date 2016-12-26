@@ -59,7 +59,7 @@ public class Events {
         Game.isDead = true;
         Player me = World.findPlayer(Game.id);
 
-        int code = GameOverDialog.show(Game.window, new Player(1, getNameList().get(Game.id), me.age, 1));
+        int code = Dialogs.showGameOver(Game.window, new Player(1, getNameList().get(Game.id), me.age, 1));
 
         switch (code) {
             case 0: // Exit
@@ -67,7 +67,7 @@ public class Events {
                 break;
             case 1: // Rank
                 Network.sendFullListRequest();
-                RankListDialog.show(Game.window, Network.receiveFullList());
+                Dialogs.showRankList(Game.window, Network.receiveFullList());
                 die();
                 break;
             case 2: // Restart

@@ -29,7 +29,7 @@ public class Game {
         isStopped = false;
         isDead = false;
 
-        String info = StartDialog.getInfo();
+        String info = Dialogs.showStart();
 
         try {
             String[] infoSplit = info.trim().split("@");
