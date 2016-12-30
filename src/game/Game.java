@@ -32,10 +32,15 @@ public class Game {
         String info = Dialogs.showStart();
 
         try {
-            String[] infoSplit = info.trim().split("@");
-            name = infoSplit[0];
-            server = infoSplit[1];
-
+            if (info.equals("dbg")) {
+                name = "debug";
+                server = "127.0.0.1:20000";
+            } else {
+                String[] infoSplit = info.trim().split("@");
+                name = infoSplit[0];
+                server = infoSplit[1];
+            }
+            
             Debug.info("Connecting to " + server);
             Network.init();
             Debug.success("Connection established");
