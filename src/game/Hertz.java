@@ -5,7 +5,7 @@ package game;
  *
  * @author dorian
  */
-class Hertz {
+public class Hertz {
 
     private final double NANO_TO_BASE = 1.0e9;
     private long lastUpdateTime;
